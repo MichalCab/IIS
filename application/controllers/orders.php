@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class OrdersController extends DriverController {
+class Orders extends MY_Controller {
 
 	function __construct()
     {
