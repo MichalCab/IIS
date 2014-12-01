@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AddressController extends CustomerController {
+class Address extends MY_Controller {
 
 	function __construct()
     {
