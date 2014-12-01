@@ -2,14 +2,13 @@
 
 class MVodic extends CI_Model {
 
-    function MVodic()
+    function __construct()
     {
         parent::__construct();
     }
 
     public function test( )
     {
-        $this->db->select('id');
         $query = $this->db->get('vClen');
 
         $result = $query->result();
