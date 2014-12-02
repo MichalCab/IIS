@@ -13,10 +13,9 @@
 		<link rel="stylesheet" href="/css/myStyle.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
 	<body>
-	
-	    <?php $this->load->view('includes/_status'); ?>
-	    
-		<div id="wrapper_login">
+	    <div id="errorOnTop"></div>
+	    <?php $this->load->view('includes/_status', (isset($postMsg) ? $postMsg : null)); ?>
+	    <div id="wrapper_login">
 			<div id="menu">
 				<div id="left"></div>
 				<div id="right"></div>
@@ -40,6 +39,7 @@
 							<p class="last">
 								<input type="submit" value="Login" class="novisible" />
 								<a href="" class="button form_submit"><small class="icon play"></small><span>Login</span></a>
+								<a href="" class="button right"><small class="icon play"></small><span>Registrácia</span></a>
 								<br />
 							</p>
 							<div class="clear"></div>

@@ -7,11 +7,14 @@
 		<meta name="description" content="" />
 		<title>Gray Admin Template</title>
 		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="/css/myStyle.css" type="text/css" media="screen" charset="utf-8" />
 		<script src="/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/global.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/modal.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+	    <div id="errorOnTop"></div>
+	    <?php $this->load->view('includes/_status', (isset($postMsg) ? $postMsg : null));?>
 		<div id="header">
 			<div class="col w5 bottomlast">
 				<a href="" class="logo">
