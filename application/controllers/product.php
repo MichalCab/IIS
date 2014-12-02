@@ -7,6 +7,7 @@ class Product extends MY_Controller {
         parent::__construct();
         $this->load->model('mproduct');
         $this->load->model('mproductmaterial');
+        $this->load->model('mmateriall');
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
             redirect('/user/login/', 'refresh');
     }
@@ -17,7 +18,18 @@ class Product extends MY_Controller {
     }
     public function add()
     {
-        $this->load->view('product_add', $data);
+        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        {
+            $post_data = $this->input->post();
+            echo json_encode($this->mproduct->addProduct($post_data));
+        }
+        else
+        {
+            $data['productmaterial'] = $this->mproductmaterial->getProductMaterial($id);
+            $data['product'] = $this->mproduct->getProduct($id);
+            $data['material'] = $this->mmaterial->getMaterial($id);
+            $this->load->view('product_edit', $data);
+        }
     }
     public function edit($id)
     {
@@ -25,7 +37,7 @@ class Product extends MY_Controller {
         {
             $post_data = $this->input->post();
             $post_data["id"] = $id;
-            echo json_encode($this->maddress->addAddress($post_data));
+            echo json_encode($this->maddress->editProduct($post_data));
         }
         else
         {
@@ -34,60 +46,12 @@ class Product extends MY_Controller {
             $this->load->view('product_edit', $data);
         }
     }
-    public function set($id, $status)
-    {
-    }
-}
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class Address extends MY_Controller {
-
-	function __construct()
-    {
-        parent::__construct();
-        $this->load->model('maddress');
-        #$this->userData = $this->auth->getUserData();
-        if (! $this->auth->isLogged())
-            redirect('/login/form/', 'refresh');
-        if (! $this->auth->isCustomer())
-            redirect('/user/', 'refresh')
-    }
-    public function index()
-    {
-        $data['addresses'] = $this->maddress->getAddresses()
-        $this->load->view('address', $data);
-    }
-    public function add()
+    public function set()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            $post_data["id"] = $this->userData->id;
-            echo json_encode($this->maddress->addAddress($post_data));
-        }
-        else
-            $this->load->view('address_add', $data);
-       
-    }
-    public function edit($id)
-    {
-        if ($this->input->server('REQUEST_METHOD') === 'POST')
-        {
-            $post_data = $this->input->post();
-            echo json_encode($this->maddress->updateAddress($post_data, $id));
-        }
-        else
-        {
-            $data = $this->maddress->getAddress($id);
-            $this->load->view('address_edit', $data);
-        }
-    }
-    public function delete()
-    {
-        if ($this->input->server('REQUEST_METHOD') === 'POST')
-        {
-            $id = $this->input->post('id', FALSE);
-            echo json_encode($this->maddress->deleteAddress($id));
+            echo json_encode($this->morder->updateProduct($post_data, $id, array('vybavene')));
         }
         else
             echo json_encode(FALSE);

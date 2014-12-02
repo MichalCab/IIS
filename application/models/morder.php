@@ -14,7 +14,11 @@ class MOrder extends MY_Model {
     }
     public function getDriverOrders($id)
     {
-        return $this->getRows('vodic', $id);
+        return $this->getRows('vodic', $id, 0);
+    }
+    public function getManagementOrders()
+    {
+        return $this->getRows(NULL, NULL, 0);
     }
     public function getOrder($id)
     {
