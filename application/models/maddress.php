@@ -20,17 +20,17 @@ class MAddress extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addAddress(&$data)
+    public function addAddress($data)
     {    
         if ($this->auth->isCustomer())
-            $attributes = array('adresa, clen');
+            $attributes = array('adresa', 'clen');
 
         return $this->addRow($data, $attributes);
     }
-    public function editAddress(&$data, $id)
+    public function editAddress($data, $id)
     {
         if ($this->auth->isCustomer())
-            $attributes = array('adresa, clen');
+            $attributes = array('adresa', 'clen');
         elseif ($this->auth->isAdmin())
             $attributes = array('oblast');
 

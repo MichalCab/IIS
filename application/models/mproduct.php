@@ -16,13 +16,17 @@ class MProduct extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addProduct(&$data)
-    {    
-        return $this->addRow($data);
+    public function addProduct($data)
+    {   
+        if ($this->auth->isAdmin())
+            $attributes = array('nazov', 'cena', 'popis');
+        return $this->addRow($data, $attributes);
     }
-    public function editProduct(&$data, $id)
+    public function editProduct($data, $id)
     {
-        return $this->editRow($data, $id);
+        if ($this->auth->isAdmin())
+            $attributes = array('nazov', 'cena', 'popis');
+        return $this->editRow($data, $id, $attributes);
     }
     public function deleteProduct($id)
     {
