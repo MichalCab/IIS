@@ -12,9 +12,8 @@ class User extends MY_Controller {
     {
         if (! $this->auth->isLogged())
             redirect('/user/login/', 'refresh');
-        $data['addresses'] = $this->maddress->getAddresses();
         $data['user'] = $this->auth->getUserData();
-        $this->load->view('address');
+        $this->load->view('user');
     }
     public function add()
     {
