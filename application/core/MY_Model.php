@@ -29,17 +29,17 @@ class MY_Model extends CI_Model {
         $query->free_result();
         return $result;
     }
-    public function addRow(&$data)
+    public function addRow($data)
     {
         $this->Modelvalidator->valideInsert($data, $attibutes);
         $this->db->insert($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
-    public function editRow(&$data, $id)
+    public function editRow($data, $id)
     {
         $this->Modelvalidator->valideUpdate($data, $attributes);
         $this->db->where('id', $id);
-        $this->db->update($this->table_name, $data);
+        $this->db->update($this->table_name[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
     public function deleteRow($id)

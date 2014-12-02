@@ -16,12 +16,16 @@ class MUser extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addUser(&$data)
+    public function addUser($data)
     {    
+        if ($this->auth->isAdmin())
+            $attributes = array('nazov', 'cena', 'popis');
         return $this->addRow($data);
     }
-    public function editUser(&$data, $id)
+    public function editUser($data, $id)
     {
+        if ($this->auth->isAdmin())
+            $attributes = array('nazov', 'cena', 'popis');
         return $this->editRow($data, $id);
     }
     public function deleteUser($id)

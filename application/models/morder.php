@@ -31,11 +31,11 @@ class MOrder extends MY_Model {
             $attributes = array('adresa, podal, suma');
         return $this->addRow($data, $attributes);
     }
-    public function editOrder(&$data, $id)
+    public function editOrder($data, $id)
     {
         if ($this->auth->isAdmin() || $this->auth->isDriver())
             $attributes = array('vybavene');
-        return $this->editRow(&$data, $id);
+        return $this->editRow($data, $id, $attributes);
     }
 
     public function deleteOrder($id)
