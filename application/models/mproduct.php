@@ -5,12 +5,12 @@ class MProduct extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = 'vPecivo';
+        $this->table_names = array('vPecivo', 'vPecivoSurovina');
     }
 
     public function getProducts($id)
     {
-        return $this->getRows($id, $id);
+        return $this->getRows($id, $id, 0);
     }
     public function getProduct($id)
     {
@@ -29,8 +29,8 @@ class MProduct extends MY_Model {
         return $this->deleteRow($id);
     }
 
-    public function getProductsMaterial($id)
+    public function getProductMaterial($id)
     {
-        return $this->getRows($id, $id);
+        return $this->getRows($id, $id, 1);
     }
 }

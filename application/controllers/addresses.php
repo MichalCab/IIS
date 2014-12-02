@@ -6,12 +6,15 @@ class Address extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('maddress');
-        if (! $this->auth->isLogged() || ! $this->auth->isCustomer())
-            redirect('/user/login/', 'refresh');
+        #$this->userData = $this->auth->getUserData();
+        if (! $this->auth->isLogged())
+            redirect('/login/form/', 'refresh');
+        if (! $this->auth->isCustomer())
+            redirect('/user/', 'refresh')
     }
     public function index()
     {
-        $data['addresses'] = $this->maddress->getAddresses()
+        $data['addresses'] = $this->maddress->getManagementAddresses()
         $this->load->view('address', $data);
     }
     public function add()
@@ -19,7 +22,6 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            $post_data["id"] = $this->userData->id;
             echo json_encode($this->maddress->addAddress($post_data));
         }
         else
