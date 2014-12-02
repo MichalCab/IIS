@@ -10,7 +10,7 @@ class MAddress extends MY_Model {
 
     public function getCustomerAddresses($id)
     {
-        return $this->getRows('id', $id);
+        return $this->getRows('id', $id, 0);
     }
     public function getManagementAddresses($id)
     {

@@ -1,12 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Address extends MY_Controller {
+class Addresses extends MY_Controller {
 
 	function __construct()
     {
         parent::__construct();
         $this->load->model('maddress');
-        #$this->userData = $this->auth->getUserData();
         if (! $this->auth->isLogged())
             redirect('/login/form/', 'refresh');
         if (! $this->auth->isCustomer())
