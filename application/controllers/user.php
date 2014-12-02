@@ -14,7 +14,7 @@ class User extends MY_Controller {
             redirect('/user/login/', 'refresh');
         $data['addresses'] = $this->maddress->getAddresses();
         $data['user'] = $this->auth->getUserData();
-        $this->load->view('address', $data);
+        $this->load->view('address');
     }
     public function add()
     {
@@ -24,7 +24,7 @@ class User extends MY_Controller {
             echo json_encode($this->muser->addUser($post_data));
         }
         else
-            $this->load->view('user_add', $data);
+            $this->load->view('user_add');
     }
     public function login()
     {
@@ -35,6 +35,6 @@ class User extends MY_Controller {
             echo json_encode($this->auth->login($login, $heslo));
         }
         else
-            $this->load->view('user_login', $data);
+            $this->load->view('user_login');
     }
 }
