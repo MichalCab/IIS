@@ -3,17 +3,17 @@
 class Auth
 {
 	private $CI;
-	public $user = NULL;
+	private $user = NULL;
+	private $cookieAuthName = 'userId';
 
 	function __construct()
 	{
 		$this->CI =& get_instance();
 
-		$id = $this->CI->input->cookie('userId', FALSE);
+		$id = $this->CI->input->cookie($this->cookieAuthName, FALSE);
 		
 		if ($id)
 		{
-			$this->CI->db->select('*');
 			$this->CI->db->where('id', $id);
 			$query = $this->CI->db->get('vClen');
 
@@ -49,7 +49,6 @@ class Auth
 	
 	function login($login, $password)
 	{
-	    $this->CI->db->select('*');
 	    $this->CI->db->where('login', $login);
 	    $this->CI->db->where('heslo', $password);
 	    $query = $this->CI->db->get('vClen');
@@ -57,6 +56,12 @@ class Auth
 	    $this->user = $query->row();
 	    $query->free_result();
 	    
-	    return $this->isLogged();
+	    if ($this->isLogged())
+	    {
+	        $this->CI->input->set_cookie(array($this->cookieAuthName => $this->user->id));
+	        return true;
+	    }
+	    
+	    return false;
 	}
 }
