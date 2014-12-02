@@ -5,7 +5,7 @@ class MArea extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = 'vOblastRozvozu', 'vOblastRozvozuAdresa';
+        $this->table_name = array('vOblastRozvozu', 'vOblastRozvozuAdresa');
     }
 
     public function getAreas()
@@ -18,16 +18,19 @@ class MArea extends MY_Model {
     }
     public function addArea($data)
     {    
-        return $this->addRow($data);
+        $attributes = array('nazov')
+        return $this->addRow($data, $attributes);
     }
-    public function editArea($data, $id)
+    public function editArea(&$data, $id)
     {
-        return $this->editRow($data, $id);
+        $attributes = array('nazov', 'spravuje');
+        return $this->editRow(&$data, $id, $attributes);
     }
     public function deleteArea($id)
     {
         return $this->deleteRow($id);
     }
+
     public function getAreasAddresses()
     {
         return $this->getRows(NULL, NULL, 1);

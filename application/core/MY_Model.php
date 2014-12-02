@@ -5,7 +5,7 @@ class MY_Model extends CI_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = NULL;
+        $this->table_names = NULL;
     }
 
     public function getRows($column, $id, $table_index)
@@ -29,13 +29,15 @@ class MY_Model extends CI_Model {
         $query->free_result();
         return $result;
     }
-    public function addRow($data)
+    public function addRow(&$data)
     {
-        $this->db->insert($this->table_name, $data);
+        $this->Modelvalidator->valideInsert($data, $attibutes)
+        $this->db->insert($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
-    public function editRow($data, $id)
+    public function editRow(&$data, $id)
     {
+        $this->Modelvalidator->valideUpdate($data, $attributes)
         $this->db->where('id', $id);
         $this->db->update($this->table_name, $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;

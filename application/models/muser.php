@@ -16,11 +16,11 @@ class MUser extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addUser($data)
+    public function addUser(&$data)
     {    
         return $this->addRow($data);
     }
-    public function editUser($data, $id)
+    public function editUser(&$data, $id)
     {
         return $this->editRow($data, $id);
     }

@@ -16,11 +16,11 @@ class MProduct extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addProduct($data)
+    public function addProduct(&$data)
     {    
         return $this->addRow($data);
     }
-    public function editProduct($data, $id)
+    public function editProduct(&$data, $id)
     {
         return $this->editRow($data, $id);
     }

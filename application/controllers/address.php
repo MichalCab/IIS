@@ -16,14 +16,24 @@ class Address extends MY_Controller {
     }
     public function add()
     {
+        $data = array('view' => 'cAddressAdd"');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
             $post_data["id"] = $this->userData->id;
-            echo json_encode($this->maddress->addAddress($post_data));
+            if($this->maddress->addAddress($post_data))
+            {
+                $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
+                redirect('/addres', 'refresh');
+            }
+            else
+            {
+                $data['data']['wrong'] = $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow("Nesprávny login alebo heslo", $data));
+            }
         }
         else
-            $this->load->view('address_add', $data);
+            $this->load->view('_container', $this->statman->setActualStatus($data));
        
     }
     public function edit($id)

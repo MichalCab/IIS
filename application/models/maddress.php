@@ -5,7 +5,7 @@ class MAddress extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = 'vAdresa';
+        $this->table_names = array('vAdresa');
     }
 
     public function getCustomerAddresses($id)
@@ -20,13 +20,21 @@ class MAddress extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addAddress($data)
+    public function addAddress(&$data)
     {    
-        return $this->addRow($data);
+        if ($this->auth->isCustomer())
+            $attributes = array('adresa, clen');
+
+        return $this->addRow($data, $attributes);
     }
-    public function editAddress($data, $id)
+    public function editAddress(&$data, $id)
     {
-        return $this->editRow($data, $id);
+        if ($this->auth->isCustomer())
+            $attributes = array('adresa, clen');
+        elseif ($this->auth->isAdmin())
+            $attributes = array('oblast');
+
+        return $this->editRow($data, $id, $attributes);
     }
     public function deleteAddress($id)
     {
