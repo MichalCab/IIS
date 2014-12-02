@@ -10,24 +10,21 @@ class MOrders extends MY_Model {
 
     public function getOrders($id)
     {
-        return $this->getRows(array('key' => 'clen', 'value' => $id), $this->table_name);
+        return $this->getRows('vodic', $id);
     }
-    public function getAddress($id)
+    public function getOrder($id)
     {
-        return $this->getRow($id, $this->table_name);
+        return $this->getRow($id);
     }
-    public function addAddress($data, $id)
+    public function addOrder($data)
     {    
-        $this->db->insert($this->table_name, $data);
-        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+        return $this->addRow($data);
     }
-    public function editAddress($data, $id)
+    public function editOrder($data, $id)
     {
-        $this->db->where('id', $id);
-        $this->db->update($this->table_name, $data);
-        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+        return $this->editRow($data, $id);
     }
-    public function deleteAddress($id)
+    public function deleteOrder($id)
     {
         return $this->deleteRow($id);
     }

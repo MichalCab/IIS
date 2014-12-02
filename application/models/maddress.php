@@ -1,31 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MAddress extends MY_Model {
+class MAddresss extends MY_Model {
 
     function __construct()
     {
         parent::__construct();
-        $this->table_name = 'vAdresa'
+        $this->table_name = 'vAdresa';
     }
 
     public function getAddresses($id)
     {
-        return $this->getRows(array('key' => 'clen', 'value' => $id), $this->table_name);
+        return $this->getRows('id', $id);
     }
     public function getAddress($id)
     {
-        return $this->getRow($id, $this->table_name);
+        return $this->getRow($id);
     }
-    public function addAddress($data, $id)
+    public function addAddress($data)
     {    
-        $this->db->insert($this->table_name, $data);
-        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+        return $this->addRow($data);
     }
     public function editAddress($data, $id)
     {
-        $this->db->where('id', $id);
-        $this->db->update($this->table_name, $data);
-        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+        return $this->editRow($data, $id);
     }
     public function deleteAddress($id)
     {

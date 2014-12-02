@@ -9,17 +9,26 @@ class Address extends MY_Controller {
     }
     public function index()
     {
-        $this->maddress->loadAddresses()
+        $this->maddress->getAddresses()
         $this->load->view('address', $data);
     }
     public function add()
     {
-        $post_data = $this->input->post();
-        $this->maddress->saveAddress($post_data);
+        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        {
+            $post_data = $this->input->post();
+            return $this->maddress->addAddress($post_data);
+        }
         $this->load->view('address_add', $data);
+       
     }
     public function edit($id)
     {
+        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        {
+            $post_data = $this->input->post();
+            return $this->maddress->updateAddress($post_data, $id);
+        }
         $data = $this->maddress->getAddress($id);
         $this->load->view('address_edit', $data);
     }
