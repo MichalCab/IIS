@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller {
 
-    private $userData;
+    public $userData;
     
 	function __construct()
     {
