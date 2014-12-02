@@ -20,6 +20,8 @@ class User extends MY_Controller {
     }
     public function add()
     {
+        if ($this->auth->isLogged())
+            redirect('/user', 'refresh');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
@@ -29,10 +31,10 @@ class User extends MY_Controller {
                 redirect('/user/login', 'refresh');
             }
             else
-                $this->load->view('register', $this->statman->setErrorNow("Nesprávny login alebo heslo"));
+                $this->load->view('register', $this->statman->setErrorNow("Všetky polia sú povinné", $this->input->post()));
         }
         else
-            $this->load->view('register');
+            $this->load->view('register', $this->statman->setActualStatus());
     }
     public function login()
     {

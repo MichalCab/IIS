@@ -4,8 +4,10 @@ class Statman
 {
 	private $CI;
 	
-	private $errorVariableName = 'ERR';
+	private $variableName = 'postMsg';
+	
 	private $successVariableName = 'SUCC';
+	private $errorVariableName = 'ERR';
 	
 	private $cookieSuccessName = 'successCookie';
 	private $cookieErrorName = 'errorCookie';
@@ -25,12 +27,12 @@ class Statman
 	    if ($cookieSuccess)
 	    {
 	        $this->CI->cookieman->deleteCookie($this->cookieSuccessName, FALSE);
-	        $result = array($this->cookieSuccessName => $cookieSuccess);
+	        $result = array($this->variableName => array($this->successVariableName => $cookieSuccess));
 	    } 
 	    else if ($cookieError)
 	    {
 	        $this->CI->cookieman->deleteCookie($this->$cookieErrorName, FALSE);
-	        $result = array($this->cookieErrorName => $cookieError);
+	        $result = array($this->variableName => array($this->errorVariableName => $cookieError));
 	    }
 	    
 	    return array_merge($array, $result);
@@ -48,11 +50,11 @@ class Statman
 	
 	function setErrorNow($data = true, $array = array())
 	{	    
-        return array_merge(array($this->errorVariableName => $data), $array);
+        return array_merge(array($this->variableName => array($this->errorVariableName => $data)), $array);
 	}
 	
 	function setSuccessNow($data = true, $array = array())
 	{
-	    return array_merge(array($this->successVariableName => $data), $array);
+	    return array_merge(array($this->variableName => array($this->successVariableName => $data)), $array);
 	}
 }
