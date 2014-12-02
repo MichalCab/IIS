@@ -46,13 +46,13 @@ class Statman
 	    $this->CI->cookieman->setCookie($this->cookieSuccessName, $msg);
 	}
 	
-	function setErrorNow($data = true)
-	{
-        return array($this->errorVariableName => $data);	    
+	function setErrorNow($data = true, $array = array())
+	{	    
+        return array_merge(array($this->errorVariableName => $data), $array);
 	}
 	
-	function setSuccessNow($data = true)
+	function setSuccessNow($data = true, $array = array())
 	{
-	    return array($this->successVariableName => $data);
+	    return array_merge(array($this->successVariableName => $data), $array);
 	}
 }
