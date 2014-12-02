@@ -24,14 +24,20 @@ class MOrder extends MY_Model {
     {
         return $this->getRow($id);
     }
+
     public function addOrder($data)
-    {    
-        return $this->addRow($data);
+    {   
+        if ($this->auth->isCustomer()) 
+            $attributes = array('adresa, podal, suma');
+        return $this->addRow($data, $attributes);
     }
-    public function editOrder($data, $id)
+    public function editOrder(&$data, $id)
     {
-        return $this->editRow($data, $id);
+        if ($this->auth->isAdmin() || $this->auth->isDriver())
+            $attributes = array('vybavene');
+        return $this->editRow(&$data, $id);
     }
+
     public function deleteOrder($id)
     {
         return $this->deleteRow($id);
