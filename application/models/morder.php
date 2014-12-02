@@ -5,12 +5,12 @@ class MOrder extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = 'vObjednavka';
+        $this->table_name = array('vObjednavka', 'vObjednavkaPecivo');
     }
 
     public function getCustomerOrders($id)
     {
-        return $this->getRows('podal', $id);
+        return $this->getRows('podal', $id, 0);
     }
     public function getDriverOrders($id)
     {
@@ -31,5 +31,14 @@ class MOrder extends MY_Model {
     public function deleteOrder($id)
     {
         return $this->deleteRow($id);
+    }
+
+    public function getOrdersProducts()
+    {
+        return $this->getRows(NULL, NULL, 1);
+    }
+    public function getOrderProducts($id)
+    {
+        return $this->getRows('id', $id, 1);
     }
 }

@@ -8,9 +8,9 @@ class MUser extends MY_Model {
         $this->table_name = array('vClen');
     }
 
-    public function getUsers($id)
+    public function getUsers()
     {
-        return $this->getRows($id, $id, 0);
+        return $this->getRows(NULL, NULL, 0);
     }
     public function getUser($id)
     {

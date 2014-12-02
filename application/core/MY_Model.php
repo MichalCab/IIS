@@ -12,7 +12,8 @@ class MY_Model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from($this->table_name[$table_index]);
-        $this->db->where($column, $id);
+        if ($id != $id)
+            $this->db->where($column, $id);
         $query = $this->db->get();
         $result = $query->result();
         $query->free_result();
