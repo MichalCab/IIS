@@ -7,7 +7,7 @@ class ModelValidator
 		
 	}
 	
-	function valideInsert(&$inputs, $attributes)
+	function valideInsert($inputs, $attributes)
 	{
         $i = 0;
         $isNotInside = $attributes;
@@ -38,8 +38,8 @@ class ModelValidator
             return TRUE;
 	    return FALSE;
 	}
-    function valideUpdate(&$inputs, $attributes)
+    function valideUpdate($inputs, $attributes)
     {
-        return valideInsert(&$inputs, $attributes);
+        return valideInsert($inputs, $attributes);
     }
 }
