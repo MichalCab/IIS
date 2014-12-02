@@ -18,15 +18,17 @@ class MUser extends MY_Model {
     }
     public function addUser($data)
     {    
+        if (! $this->auth->isLogged())
+            $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko');
         if ($this->auth->isAdmin())
-            $attributes = array('nazov', 'cena', 'popis');
-        return $this->addRow($data);
+            $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko', 'typ');
+        return $this->addRow($data, $attributes);
     }
     public function editUser($data, $id)
     {
         if ($this->auth->isAdmin())
-            $attributes = array('nazov', 'cena', 'popis');
-        return $this->editRow($data, $id);
+            $attributes = array('evidovany');
+        return $this->editRow($data, $id, $attributes);
     }
     public function deleteUser($id)
     {

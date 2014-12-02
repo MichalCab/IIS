@@ -11,7 +11,7 @@ class MY_Model extends CI_Model {
     public function getRows($column, $id, $table_index)
     {
         $this->db->select('*');
-        $this->db->from($this->table_name[$table_index]);
+        $this->db->from($this->table_names[$table_index]);
         if ($id != $id)
             $this->db->where($column, $id);
         $query = $this->db->get();
@@ -19,19 +19,19 @@ class MY_Model extends CI_Model {
         $query->free_result();
         return $result;
     }
-    public function getRow($id)
+    public function getRow($id, $table_index)
     {
         $this->db->select('*');
-        $this->db->from($this->table_name);
+        $this->db->from($this->table_names[$table_index]);
         $this->db->where('id', $id);
         $query = $this->db->get();
         $result = $query->row();
         $query->free_result();
         return $result;
     }
-    public function addRow($data)
+    public function addRow($data, $attibutes, $unset_attributes = array())
     {
-        $this->Modelvalidator->valideInsert($data, $attibutes);
+        $this->Modelvalidator->valideInsert($data, $attibutes, $unset_attributes);
         $this->db->insert($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
@@ -39,7 +39,7 @@ class MY_Model extends CI_Model {
     {
         $this->Modelvalidator->valideUpdate($data, $attributes);
         $this->db->where('id', $id);
-        $this->db->update($this->table_name[0], $data);
+        $this->db->update($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
     public function deleteRow($id)

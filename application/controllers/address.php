@@ -11,25 +11,26 @@ class Address extends MY_Controller {
     }
     public function index()
     {
-        $data['addresses'] = $this->maddress->getAddresses()
-        $this->load->view('address', $data);
+        $data['data']['addresses'] = $this->maddress->getAddresses();
+        $data['view'] = 'cAddress';
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
     public function add()
     {
-        $data = array('view' => 'cAddressAdd"');
+        $data = array('view' => 'cAddressAdd');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
             $post_data["id"] = $this->userData->id;
             if($this->maddress->addAddress($post_data))
             {
-                $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
-                redirect('/addres', 'refresh');
+                $this->statman->setSuccessStatus("Úspěšně jste přidali adresu");
+                redirect('/address', 'refresh');
             }
             else
             {
-                $data['data']['wrong'] = $post_data;
-                $this->load->view('_container', $this->statman->setErrorNow("Nesprávny login alebo heslo", $data));
+                $data['data'] = $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $post_data));
             }
         }
         else
@@ -38,15 +39,25 @@ class Address extends MY_Controller {
     }
     public function edit($id)
     {
+        $data = array('view' => 'cAddressEdit');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            echo json_encode($this->maddress->updateAddress($post_data, $id));
+            if ($this->maddress->updateAddress($post_data, $id))
+            {
+                $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
+                redirect('/address', 'refresh');
+            }
+            else
+            {
+                $data['data'] = $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $post_data));
+            }
         }
         else
         {
-            $data = $this->maddress->getAddress($id);
-            $this->load->view('address_edit', $data);
+            $data['data'] = $this->maddress->getAddress($id);
+            $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
     public function delete()

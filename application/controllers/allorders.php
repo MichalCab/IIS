@@ -16,7 +16,7 @@ class AllOrders extends MY_Controller {
     }
     public function get($id)
     {
-        $data['order'] = $this->morder->getOrder($id)
+        $data['order'] = $this->morder->getOrder($id);
         $this->load->view('order', $data);
     }
     public function set()
