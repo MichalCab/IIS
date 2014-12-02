@@ -8,11 +8,11 @@ class MY_Model extends CI_Model {
         $this->table_name = NULL;
     }
 
-    public function getRows($id)
+    public function getRows($column, $id, $table_index)
     {
         $this->db->select('*');
-        $this->db->from($this->table_name);
-        $this->db->where($id["key"], $["value"]);
+        $this->db->from($this->table_name[$table_index]);
+        $this->db->where($column, $id);
         $query = $this->db->get();
         $result = $query->result();
         $query->free_result();

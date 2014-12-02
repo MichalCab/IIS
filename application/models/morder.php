@@ -8,9 +8,13 @@ class MOrder extends MY_Model {
         $this->table_name = 'vObjednavka';
     }
 
-    public function getOrders($id)
+    public function getCustomerOrders($id)
     {
         return $this->getRows('podal', $id);
+    }
+    public function getDriverOrders($id)
+    {
+        return $this->getRows('vodic', $id);
     }
     public function getOrder($id)
     {

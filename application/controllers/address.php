@@ -6,10 +6,12 @@ class Address extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('maddress');
+        if (! $this->auth->isLogged() || ! $this->auth->isCustomer())
+            redirect('/user/login/', 'refresh');
     }
     public function index()
     {
-        $this->maddress->getAddresses()
+        $data['addresses'] = $this->maddress->getAddresses()
         $this->load->view('address', $data);
     }
     public function add()
@@ -17,9 +19,11 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            return $this->maddress->addAddress($post_data);
+            $post_data["id"] = $this->userData->id;
+            echo json_encode($this->maddress->addAddress($post_data));
         }
-        $this->load->view('address_add', $data);
+        else
+            $this->load->view('address_add', $data);
        
     }
     public function edit($id)
@@ -27,14 +31,22 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            return $this->maddress->updateAddress($post_data, $id);
+            echo json_encode($this->maddress->updateAddress($post_data, $id));
         }
-        $data = $this->maddress->getAddress($id);
-        $this->load->view('address_edit', $data);
+        else
+        {
+            $data = $this->maddress->getAddress($id);
+            $this->load->view('address_edit', $data);
+        }
     }
     public function delete()
     {
-        $id = $this->input->post($id, FALSE)
-        echo json_encode($this->maddress->deleteAddress($id));
+        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        {
+            $id = $this->input->post('id', FALSE);
+            echo json_encode($this->maddress->deleteAddress($id));
+        }
+        else
+            echo json_encode(FALSE);
     }
 }

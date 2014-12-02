@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MAddresss extends MY_Model {
+class MAddress extends MY_Model {
 
     function __construct()
     {
@@ -8,9 +8,13 @@ class MAddresss extends MY_Model {
         $this->table_name = 'vAdresa';
     }
 
-    public function getAddresses($id)
+    public function getCustomerAddresses($id)
     {
         return $this->getRows('id', $id);
+    }
+    public function getManagementAddresses($id)
+    {
+        return $this->getRows($id, $id);
     }
     public function getAddress($id)
     {
