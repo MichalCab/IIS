@@ -58,10 +58,15 @@ class Auth
 	    
 	    if ($this->isLogged())
 	    {
-	        $this->CI->input->set_cookie(array($this->cookieAuthName => $this->user->id));
+	        $this->CI->cookieman->setCookie($this->cookieAuthName, $this->user->id);
 	        return true;
 	    }
 	    
 	    return false;
+	}
+	
+	function logout()
+	{
+	    $this->CI->cookieman->deleteCookie($this->cookieAuthName);
 	}
 }
