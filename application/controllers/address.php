@@ -21,7 +21,7 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            $post_data["id"] = $this->userData->id;
+            $post_data["clen"] = $this->userData->id;
             if($this->maddress->addAddress($post_data))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali adresu");
@@ -29,8 +29,8 @@ class Address extends MY_Controller {
             }
             else
             {
-                $data['data'] = $post_data;
-                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $post_data));
+                $data['data']['address'] = (object) $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
         }
         else

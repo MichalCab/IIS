@@ -2,7 +2,7 @@
 	<form action="/<?php echo $this->router->class; ?>/add" method="post">
 		<p>
 			<label for="adresa">Adresa:</label>
-			<input type="text" name="adresa" id="adresa" value="" size="60" class="text" />
+			<input type="text" name="adresa" id="adresa" value="<?php echo (isset($address) ? $address->adresa : ''); ?>" size="60" class="text" />
 			<br />
 		</p>
 		<p class="last">
