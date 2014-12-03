@@ -50,7 +50,7 @@
                      </div>
 					 <div id="desc">
 	                     <div class="body">
-					          <?php $this->load->view($view, $data);?>
+					          <?php $this->load->view($view, (isset($data) ? $data : null));?>
 					     </div>
                      	 <div class="clear"></div>
                     	 <div id="body_footer">

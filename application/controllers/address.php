@@ -35,7 +35,6 @@ class Address extends MY_Controller {
         }
         else
             $this->load->view('_container', $this->statman->setActualStatus($data));
-       
     }
     public function edit($id)
     {

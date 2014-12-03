@@ -14,8 +14,8 @@
     				<tr id="<?php echo $item->id; ?>">
     					<td><?php echo $item->adresa; ?></td>
     					<td>
-    					   <a href="/<?php echo $this->router->class; ?>/edit/<?php echo $item->id; ?>" class="button"><small class="icon pencil"></small><span>Upraviť</span></a>
-    					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" class="button ajax"><small class="icon cross"></small><span>Zmazať</span></a>
+    					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" class="button ajax mRight"><small class="icon cross"></small><span>Zmazať</span></a>
+    					   <a href="/<?php echo $this->router->class; ?>/edit/<?php echo $item->id; ?>" class="button mRight"><small class="icon pencil"></small><span>Upraviť</span></a>
     					</td>
     				</tr>
 				<?php endforeach; ?>
