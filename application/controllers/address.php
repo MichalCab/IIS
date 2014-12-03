@@ -11,7 +11,7 @@ class Address extends MY_Controller {
     }
     public function index()
     {
-        $data['data']['addresses'] = $this->maddress->getAddresses();
+        $data['data']['addresses'] = $this->maddress->getCustomerAddresses($this->userData->id);
         $data['view'] = 'cAddress';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
@@ -43,20 +43,20 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if ($this->maddress->updateAddress($post_data, $id))
+            if ($this->maddress->editAddress($id, $post_data) || $this->maddress->getAddress($id)->adresa == $post_data["adresa"]) // TODO tuto **** si sprav ako chces!!
             {
                 $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
                 redirect('/address', 'refresh');
             }
             else
             {
-                $data['data'] = $post_data;
-                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $post_data));
+                $data['data']['address'] = (object) $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
         }
         else
         {
-            $data['data'] = $this->maddress->getAddress($id);
+            $data['data']['address'] = $this->maddress->getAddress($id);
             $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }

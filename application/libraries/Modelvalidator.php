@@ -11,20 +11,21 @@ class ModelValidator
 	{
         $i = 0;
         $isNotInside = $attributes;
-
+        $result["error"] = "";
+        $result["warning"] = "";
         //kontrola prázdnosti a nežádanosti
         foreach ($inputs as $key => $value)
         {
-            if (array_key_exists($key, $attributes))
+            if (in_array($key, $attributes))
             {
                 $i++;
                 if ($value == "")
-                    $inputs["error"] .= "Atribut '" . $key . "' je prázdný!</br>";
+                    $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
                 unset($isNotInside[$key]);
-            }   
+            }
             else
             {
-                $inputs["warning"] .= "Atribut '". $key . "' s hodnotou '" . $value . "' je nežádaný</br>";
+                $result["warning"] = $result["warning"] . "Atribut '". $key . "' je nežádaný</br>";
             }
         }
         //unset bcs of registration
@@ -35,15 +36,17 @@ class ModelValidator
         //kontrola povinosti
         foreach ($isNotInside as $key => $value)
         {
-            $inputs["error"] .= "Atribut '". $key . "' s hodnotou '" . $value . "' je povinný</br>";
+            $result["error"] = $result["error"] . "Atribut '". $value . "' je povinný</br>";
         }
-
+        
+        $result["res"] = false;
         if ($i == count($attributes))
-            return TRUE;
-	    return FALSE;
+            $result["res"] = true;
+        
+	    return $result;
 	}
-    function valideUpdate($inputs, $attributes)
+    function valideUpdate(&$inputs, $attributes)
     {
-        return valideInsert($inputs, $attributes);
+        return $this->valideInsert($inputs, $attributes);
     }
 }

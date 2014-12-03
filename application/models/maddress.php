@@ -27,14 +27,14 @@ class MAddress extends MY_Model {
 
         return $this->addRow($data, $attributes);
     }
-    public function editAddress($data, $id)
+    public function editAddress($id, &$data)
     {
         if ($this->auth->isCustomer())
-            $attributes = array('adresa', 'clen');
+            $attributes = array('adresa');
         elseif ($this->auth->isAdmin())
             $attributes = array('oblast');
 
-        return $this->editRow($data, $id, $attributes);
+        return $this->editRow($id, $data, $attributes);
     }
     public function deleteAddress($id)
     {

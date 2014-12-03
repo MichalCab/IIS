@@ -19,7 +19,7 @@ class MY_Model extends CI_Model {
         $query->free_result();
         return $result;
     }
-    public function getRow($id, $table_index)
+    public function getRow($id, $table_index = 0)
     {
         $this->db->select('*');
         $this->db->from($this->table_names[$table_index]);
@@ -29,15 +29,25 @@ class MY_Model extends CI_Model {
         $query->free_result();
         return $result;
     }
-    public function addRow($data, $attibutes, $unset_attributes = array())
+    public function addRow(&$data, $attibutes, $unset_attributes = array())
     {
-        $this->Modelvalidator->valideInsert($data, $attibutes, $unset_attributes);
+        $messages = $this->modelvalidator->valideInsert($data, $attibutes, $unset_attributes);
+        if (!$messages["res"])
+        {
+            $data = array_merge($data, $messages);
+            return false;
+        }
         $this->db->insert($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
-    public function editRow($data, $id)
+    public function editRow($id, &$data, $attributes = array())
     {
-        $this->Modelvalidator->valideUpdate($data, $attributes);
+        $messages = $this->modelvalidator->valideUpdate($data, $attributes);
+        if (!$messages["res"])
+        {
+            $data = array_merge($data, $messages);
+            return false;
+        }
         $this->db->where('id', $id);
         $this->db->update($this->table_names[0], $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
@@ -48,7 +58,7 @@ class MY_Model extends CI_Model {
             return FALSE;
         $data = array("deleted" => "1");
         $this->db->where('id', $id);
-        $this->db->update('Stav');
+        $this->db->update('Stav', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 }

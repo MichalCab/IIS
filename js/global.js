@@ -1,4 +1,27 @@
 $(document).ready(function() {
+	
+	$('.ajax').click(function(e){
+		var id = $(this).attr('ajax-id');
+		var postUrl = $(this).attr('href');
+		
+		e.preventDefault();
+		
+		$.post(postUrl, "id="+id, function(data,status){
+			var result = JSON.parse(data);
+			if(result === true) {
+				$('#'+id).addClass('hideAnim');
+				setTimeout(function(){
+					$('#'+id).remove();
+					$().Message({type:'success',time:4000,text:"Položka bola úspešne zmazaná",target:"#errorOnTop",click:true});
+				}, 200);
+			} else {
+				$().Message({type:'error',time:4000,text:((result == false) ? 'Položku sa nepodarilo zmazať' : result),target:"#errorOnTop",click:true});
+			}
+		});
+		
+		return false;
+	});
+	
 	//This is the Modal window calling	
 	$('.modal').modal();
 	$('.modal_custom').modal({width:700,showSpeed:2000,closeSpeed:2000,title:false,skin:"red"});
