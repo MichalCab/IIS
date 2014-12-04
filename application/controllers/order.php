@@ -7,6 +7,7 @@ class Order extends MY_Controller {
         parent::__construct();
         $this->load->model('morder');
         $this->load->model('mproduct');
+        $this->load->model('maddress');
         if (!$this->auth->isCustomer())
             redirect('/user', 'refresh');
     }
@@ -30,14 +31,16 @@ class Order extends MY_Controller {
             else
             {
                 $data['data']['order'] = (object) $post_data;
+                $data['data']['addresses'] = $this->maddress->getAddresses($this->userData->id);
+                $data['data']['products'] = $this->mproduct->getProducts();
                 $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
         }   
         else
         {
-            $data['data']['addresses'] = $this->morder->getAddresses($this->userData->id);
+            $data['data']['addresses'] = $this->maddress->getAddresses($this->userData->id);
             $data['data']['products'] = $this->mproduct->getProducts();
-            $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
+            $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
     public function get($id)
