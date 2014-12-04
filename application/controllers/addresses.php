@@ -14,7 +14,7 @@ class Addresses extends MY_Controller {
     {
         $data['addresses'] = $this->maddress->getManagementAddresses()
         $data['']
-        $this->load->view('_container', $this->address', $data);
+        $this->load->view('_container', $this->address, $data);
     }
     public function assignarea()
     {

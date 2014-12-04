@@ -13,7 +13,6 @@ class ModelValidator
         $isNotInside = $attributes;
         $result["error"] = "";
         $result["warning"] = "";
-        //kontrola prázdnosti a nežádanosti
         foreach ($inputs as $key => $value)
         {
             if (in_array($key, $attributes))
@@ -21,7 +20,7 @@ class ModelValidator
                 $i++;
                 if ($value == "")
                     $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
-                unset($isNotInside[$key]);
+                $isNotInside = array_diff($isNotInside, array($key));
             }
             else
             {
@@ -34,12 +33,16 @@ class ModelValidator
             unset($inputs[$value]);
         }
         //kontrola povinosti
+        echo "\n not unsetted";
+        var_dump($isNotInside);
+        echo "\n unsetted";
         foreach ($isNotInside as $key => $value)
         {
             $result["error"] = $result["error"] . "Atribut '". $value . "' je povinný</br>";
         }
         
         $result["res"] = false;
+        echo "\ni" . $i . "count(attributes)" . count($attributes) . $result["error"];
         if ($i == count($attributes) && $result["error"] == "")
             $result["res"] = true;
         
