@@ -52,7 +52,7 @@ class MOrder extends MY_Model {
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
-            $orderId = getLastIdOfOrderByOrderNumber($this->db->insert_id());
+            $orderId = $this->getLastIdOfOrderByOrderNumber($this->db->insert_id());
             $data['order_products'] = array();
             $final_price = 0.0;
             foreach ($data as $key => $value)
