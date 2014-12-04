@@ -32,11 +32,18 @@ class MAddress extends MY_Model {
     public function editAddress($id, &$data)
     {
         if ($this->auth->isCustomer())
+        {
             $attributes = array('adresa');
+            $non_empty_columns = array('adresa');
+        }
         elseif ($this->auth->isAdmin())
+        {
             $attributes = array('oblast');
+            $non_empty_columns = array('oblast');
+        }
 
-        return $this->editRow($id, $data, $attributes);
+        
+        return $this->editRow($id, $data, $attributes, array(), $non_empty_columns);
     }
     public function deleteAddress($id)
     {
