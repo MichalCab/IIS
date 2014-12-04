@@ -8,32 +8,32 @@ TRUNCATE TABLE Adresa;
 TRUNCATE TABLE Clen;
 TRUNCATE TABLE Stav;
 
-INSERT INTO Clen VALUES(0,'admin','ds5ad56s1d56a',1,'ADM','Alex','Brzobohaty');
-INSERT INTO Clen VALUES(0,'jan_novak','123456',1,'VOD','Jan','Novak');
-INSERT INTO Clen VALUES(0,'pavel_novotny','654321',1,'VOD','Pavel','Novotny');
-INSERT INTO Clen VALUES(0,'jozef_mrkvicka','password',1,'ZAK','Jozef','Mrkvicka');
-INSERT INTO Clen VALUES(0,'frantisek_svetly','heslo',0,'ZAK','Frantisek','Svetly');
-INSERT INTO Clen VALUES(0,'matyas_krc','heslo',1,'ZAK','Matyas','Krc');
-INSERT INTO Clen VALUES(0,'otakar_hluchy','heslo',1,'ZAK','Otakar','Hluchý');
+INSERT INTO Clen VALUES(0,'admin','a',1,'ADM','Alex','Brzobohaty');
+INSERT INTO Clen VALUES(0,'driver','a',1,'VOD','Jan','Novak');
+INSERT INTO Clen VALUES(0,'pavel_novotny','a',1,'VOD','Pavel','Novotny');
+INSERT INTO Clen VALUES(0,'customer','a',1,'ZAK','Jozef','Mrkvicka');
+INSERT INTO Clen VALUES(0,'frantisek_svetly','a',0,'ZAK','Frantisek','Svetly');
+INSERT INTO Clen VALUES(0,'matyas_krc','a',1,'ZAK','Matyas','Krc');
+INSERT INTO Clen VALUES(0,'otakar_hluchy','a',1,'ZAK','Otakar','Hluchý');
 
 INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),'Tomkova 24, Brno');
-INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'jozef_mrkvicka'),'Mladi 245, Ostrava');
-INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'jozef_mrkvicka'),'Celni 290/3, Brno');
+INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'customer'),'Mladi 245, Ostrava');
+INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'customer'),'Celni 290/3, Brno');
 INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'matyas_krc'),'Bezrucova 2, Brno');
 INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'matyas_krc'),'Jasenska 4, Praha');
 INSERT INTO Adresa VALUES(0,NULL,(SELECT id FROM Clen WHERE login = 'matyas_krc'),'Divadelni 987/1, Praha');
 
-INSERT INTO OblastRozvozu VALUES(0,'Brno Stred',(SELECT id FROM Clen WHERE login = 'jan_novak'));
-INSERT INTO OblastRozvozu VALUES(0,'Brno Kr. Pole',(SELECT id FROM Clen WHERE login = 'jan_novak'));
+INSERT INTO OblastRozvozu VALUES(0,'Brno Stred',(SELECT id FROM Clen WHERE login = 'driver'));
+INSERT INTO OblastRozvozu VALUES(0,'Brno Kr. Pole',(SELECT id FROM Clen WHERE login = 'driver'));
 INSERT INTO OblastRozvozu VALUES(0,'Brno Jih',(SELECT id FROM Clen WHERE login = 'pavel_novotny'));
 
-INSERT INTO Objednavka VALUES(0,NOW(),11059.59,1,(SELECT id FROM Clen WHERE login = 'jan_novak'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),(SELECT id FROM Adresa WHERE adresa = 'Tomkova 24, Brno'));
-INSERT INTO Objednavka VALUES(0,NOW(),1039.23,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'jozef_mrkvicka'),(SELECT id FROM Adresa WHERE adresa = 'Mladi 245, Ostrava'));
-INSERT INTO Objednavka VALUES(0,NOW(),7000.50,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'jozef_mrkvicka'),NULL);
-INSERT INTO Objednavka VALUES(0,NOW(),9089.20,1,(SELECT id FROM Clen WHERE login = 'jan_novak'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Bezrucova 2, Brno'));
-INSERT INTO Objednavka VALUES(0,NOW(),13450.21,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Jasenska 4, Praha'));
-INSERT INTO Objednavka VALUES(0,NOW(),12000.00,0,(SELECT id FROM Clen WHERE login = 'jan_novak'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),NULL);
-INSERT INTO Objednavka VALUES(0,NOW(),800.00,0,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),11059.59,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),(SELECT id FROM Adresa WHERE adresa = 'Tomkova 24, Brno'));
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),1039.23,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),(SELECT id FROM Adresa WHERE adresa = 'Mladi 245, Ostrava'));
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),7000.50,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),9089.20,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Bezrucova 2, Brno'));
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),13450.21,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Jasenska 4, Praha'));
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),12000.00,0,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,NOW(),800.00,0,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),NULL);
 
 INSERT INTO Pecivo VALUES(0,'rohlik','bily rohlik',1.20);
 INSERT INTO Pecivo VALUES(0,'chleb','kminovy chleb',28.50);

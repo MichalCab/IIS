@@ -7,6 +7,7 @@
 		<div class="content">
 			<table><tbody>
 			    <tr>
+			        <th>Číslo</th>
 					<th>Termin</th>
 					<th>Suma</th>
 					<th>Vybaveno</th>
@@ -15,6 +16,7 @@
 				</tr>
 				<?php foreach ($orders as $item): ?>
     				<tr id="<?php echo $item->id; ?>">
+    				    <td><?php echo $item->cislo; ?></td>
     					<td><?php echo $item->termin; ?></td>
     					<td><?php echo $item->suma; ?></td>
     					<td><?php echo ($item->vybavene == 0) ? 'Nie' : 'Áno'; ?></td>
