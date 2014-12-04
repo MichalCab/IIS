@@ -6,10 +6,10 @@
         <div class="col w1 last"><div class="content"><?php echo $order->cislo; ?></div></div>
         <div class="clear"></div>
         <div class="col w1"><div class="content"><h3>Termin:</h3></div></div>
-        <div class="col w1 last"><div class="content"><?php echo $order->meno; ?></div></div>
+        <div class="col w1 last"><div class="content"><?php echo $order->termin; ?></div></div>
         <div class="clear"></div>
         <div class="col w1"><div class="content"><h3>Suma:</h3></div></div>
-        <div class="col w1 last"><div class="content"><?php echo $order->priezvisko; ?></div></div>
+        <div class="col w1 last"><div class="content"><?php echo $order->suma; ?></div></div>
         <div class="clear"></div>
         <div class="col w1"><div class="content"><h3>Vybaveno:</h3></div></div>
         <div class="col w1 last"><div class="content"><?php echo ($order->vybavene == 0) ? 'Nie' : 'Áno'; ?></div></div>
@@ -32,7 +32,8 @@
 					<th>Cena</th>
 				</tr>
 				<?php foreach ($order_products as $item): ?>
-    				<tr id="<?php echo $item->nazov; ?>">
+    				<tr>
+    				    <td><?php echo $item->nazov; ?></td>
     					<td><?php echo $item->mnozstvo; ?></td>
     					<td><?php echo $item->popis; ?></td>
     					<td><?php echo $item->cena; ?></td>
