@@ -22,8 +22,7 @@ class Order extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            $post_data["id"] = $this->userData->id;
-            if ($this->morder->addOrder($post_data))
+            if ($this->morder->addOrder($post_data, $this->userData->id))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali objednávku");
                 redirect('/order', 'refresh');
