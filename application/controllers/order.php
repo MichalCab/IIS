@@ -33,7 +33,7 @@ class Order extends MY_Controller {
                 $data['data']['order'] = (object) $post_data;
                 $data['data']['addresses'] = $this->maddress->getCustomerAddresses($this->userData->id);
                 $data['data']['products'] = $this->mproduct->getProducts();
-                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
+                $this->load->view('_container', $this->statman->setErrorNow((isset($post_data['error']) ? $post_data['error'] : "Nastala neočakávaná chyba"), $data));
             }
         }   
         else
