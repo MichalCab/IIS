@@ -26,17 +26,40 @@ class MOrder extends MY_Model {
         return $this->getRow($id, 2);
     }
 
-    public function addOrder($data)
+    public function addOrder(&$data, $userId)
     {   
         if ($this->auth->isCustomer()) 
-            $attributes = array('podal, suma');
-        return $this->addRow($data, $attributes);
+            $attributes = array('podal', 'termin', 'adresa');
+        
+        $data['podal'] = $userId;
+        $orderError = $this->addRow($data, $attributes);
+        if ($orderError)
+        {
+            $orderId = $this->db->insert_id();
+            $orderError['order_products'] = array();
+            foreach ($data as $key => $value)
+            {
+                if ($key != "termin" && $key != "adresa" && $key != "podal")
+                {
+                    $orderError['order_products'][$key] = $value;
+                    $this->addProductToOrder($data, $orderId);
+                }
+            }
+        }
+        return $orderError;
     }
-    public function editOrder($data, $id)
+    public function addProductToOrder($idProduct, $idOrder, $value)
+    {
+        $data = array('objednavka'=>$idOrder, 'pecivo'=>$idProduct, 'mnozstvo'=>$value);
+        $this->db->insert('vZoznam', $data);
+        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+    }   
+    public function editOrder($id, &$data)
     {
         if ($this->auth->isAdmin() || $this->auth->isDriver())
             $attributes = array('vybavene');
-        return $this->editRow($data, $id, $attributes);
+        
+        return $this->editRow($data, $attributes);
     }
 
     public function deleteOrder($id)
