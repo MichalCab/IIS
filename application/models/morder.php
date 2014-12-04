@@ -43,24 +43,49 @@ class MOrder extends MY_Model {
         if ($orderError)
         {
             $orderId = $this->db->insert_id();
-            $orderError['order_products'] = array();
+            $data['order_products'] = array();
+            $final_price = 0.0;
             foreach ($data as $key => $value)
             {
                 if ($key != "termin" && $key != "adresa" && $key != "podal")
                 {
-                    $orderError['order_products'][$key] = $value;
-                    $this->addProductToOrder($data, $orderId);
+                    $data['order_products'][$key] = $value;
+                    if ($value != 0)
+                    {
+                        $this->addProductToOrder($key ,$orderId, $value);
+                    }
+                    $price = $this->getProductPrice($key);
+                    $final_price += $value * $price;
                 }
             }
+            $this->editFinalPriceOfOrder($id, $final_price);
         }
-        return $orderError;
+        return $data;
+    }
+    public function getProductPrice($id)
+    {
+        $this->db->select('cena');
+        $this->db->from('Pecivo');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        $result = $query->row();
+        $query->free_result();
+        return $result->cena;
     }
     public function addProductToOrder($idProduct, $idOrder, $value)
     {
         $data = array('objednavka'=>$idOrder, 'pecivo'=>$idProduct, 'mnozstvo'=>$value);
-        $this->db->insert('vZoznam', $data);
+        $this->db->insert('Zoznam', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }   
+    public function editFinalPriceOfOrder($id, $price)
+    {
+        $data = array("price"=>$price);
+        $this->db->where('id', $id);
+        $this->db->update('Objednavka', $data);
+        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+
+    }
     public function editOrder($id, &$data)
     {
         if ($this->auth->isAdmin() || $this->auth->isDriver())
