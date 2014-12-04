@@ -6,6 +6,7 @@ class MMaterial extends MY_Model {
     {
         parent::__construct();
         $this->table_name = array('vSurovina');
+        $this->table_insert_names = array('SUrovina');
     }
 
     public function getMaterials($id)

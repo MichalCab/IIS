@@ -6,7 +6,7 @@ class MAddress extends MY_Model {
     {
         parent::__construct();
         $this->table_names = array('vAdresa');
-        $this->table_insert_names = array('vAdresa');
+        $this->table_insert_names = array('Adresa');
     }
 
     public function getCustomerAddresses($id)

@@ -6,6 +6,7 @@ class MProduct extends MY_Model {
     {
         parent::__construct();
         $this->table_names = array('vPecivo', 'vPecivoSurovina');
+        $this->table_insert_names = array('Pecivo');
     }
 
     public function getProducts()
