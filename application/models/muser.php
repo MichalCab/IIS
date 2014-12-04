@@ -20,7 +20,10 @@ class MUser extends MY_Model {
     public function addUser(&$data)
     {    
         if (! $this->auth->isLogged())
+        {
+            echo $data;
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko');
+        }
         if ($this->auth->isAdmin())
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko', 'typ');
         return $this->addRow($data, $attributes, array('heslo_znovu'));

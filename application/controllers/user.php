@@ -37,7 +37,7 @@ class User extends MY_Controller {
                     redirect('/user/login', 'refresh');
                 }
                 else
-                    $this->load->view('register', $this->statman->setErrorNow("Všetky polia sú povinné". $post_data['error'], $this->input->post()));
+                    $this->load->view('register', $this->statman->setErrorNow($post_data['error'], $this->input->post()));
             }
         }
         else
