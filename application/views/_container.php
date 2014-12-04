@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="/css/myStyle.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-		<script src="/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		<script src="/js/global.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/modal.js" type="text/javascript" charset="utf-8"></script>
 	</head>

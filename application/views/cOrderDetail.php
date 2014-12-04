@@ -1,6 +1,6 @@
+<h1>Informácie o objednávke</h1>
 <div class="box">
     <div class="head"><div></div></div>
-    <h2>Informácie o užívateľovy</h2>
     <div class="desc">
         <div class="col w1"><div class="content"><h3>Číslo:</h3></div></div>
         <div class="col w1 last"><div class="content"><?php echo $order->cislo; ?></div></div>
