@@ -44,7 +44,7 @@ class Order extends MY_Controller {
     public function get($id)
     {
         $data['data']['order'] = $this->morder->getOrder($id);
-        $data['data']['order_product'] = $this->morder->getOrderProduct($id);
+        $data['data']['order_product'] = $this->morder->getOrderProducts($id);
         $data['view'] = 'cOrderDetail';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
