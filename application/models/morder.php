@@ -63,7 +63,6 @@ class MOrder extends MY_Model {
                     $data['order_products'][$key] = $value;
                     if ($value != 0)
                     {
-                        var_dump($value);
                         $this->addProductToOrder($key, $orderId, $value); #TODO it returns tru/false
                     }
                     $price = $this->getProductPrice($key);
