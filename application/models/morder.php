@@ -49,13 +49,14 @@ class MOrder extends MY_Model {
             return false;
         */
         $non_empty_columns = array('podal', 'adresa','termin');
+        $data_copy = clone $data;
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
             $orderId = $this->getLastIdOfOrderByOrderNumber($this->db->insert_id());
             $data['order_products'] = array();
             $final_price = 0.0;
-            foreach ($data as $key => $value)
+            foreach ($data_copy as $key => $value)
             {
                 if ($key != "termin" && $key != "adresa" && $key != "podal")
                 {
@@ -63,7 +64,7 @@ class MOrder extends MY_Model {
                     if ($value != 0)
                     {
                         var_dump($value);
-                        $this->addProductToOrder($key, $orderId, $value);
+                        $this->addProductToOrder($key, $orderId, $value); #TODO it returns tru/false
                     }
                     $price = $this->getProductPrice($key);
                     $final_price += $value * $price;
