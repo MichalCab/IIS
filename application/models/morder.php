@@ -49,7 +49,7 @@ class MOrder extends MY_Model {
             return false;
         */
         $non_empty_columns = array('podal', 'adresa','termin');
-        $data_copy = clone $data;
+        $data_copy = $data;
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
