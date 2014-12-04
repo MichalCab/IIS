@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$( ".datepicker" ).datepicker({ minDate: 1 });
+	$( ".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
 	
 	$('.ajax').click(function(e){
 		var id = $(this).attr('ajax-id');
@@ -30,14 +30,14 @@ $(document).ready(function() {
 	//This is the Modal window calling	
 	
 	//This function is for the form submit
-	$("a.form_submit").live("click", function(){
+	$(document).on("click", "a.form_submit", function(){
 		$(this).closest('form').submit();
 		return false;
 	});	
 	//This function is for the form submit
 
 	//This function is for the dropdown module
-	$("a.dropdown_button").live("click", function(){
+	$(document).on("click", "a.dropdown_button", function(){
 		$('.dropdown').stop().slideUp();
 		$(this).next().stop().slideToggle();
 		return false;
@@ -45,7 +45,7 @@ $(document).ready(function() {
 	//This function is for the dropdown module
 
 	//This function is for the dropdown module, this is the close button
-	$(".dropdown .close").live("click", function(){
+	$(document).on("click", ".dropdown .close", function(){
 		$(this).closest('.dropdown').stop().slideUp();
 		return false;
 	});

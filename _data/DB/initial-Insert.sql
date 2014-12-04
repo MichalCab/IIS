@@ -27,13 +27,13 @@ INSERT INTO OblastRozvozu VALUES(0,'Brno Stred',(SELECT id FROM Clen WHERE login
 INSERT INTO OblastRozvozu VALUES(0,'Brno Kr. Pole',(SELECT id FROM Clen WHERE login = 'driver'));
 INSERT INTO OblastRozvozu VALUES(0,'Brno Jih',(SELECT id FROM Clen WHERE login = 'pavel_novotny'));
 
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),11059.59,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),(SELECT id FROM Adresa WHERE adresa = 'Tomkova 24, Brno'));
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),1039.23,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),(SELECT id FROM Adresa WHERE adresa = 'Mladi 245, Ostrava'));
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),7000.50,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),NULL);
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),9089.20,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Bezrucova 2, Brno'));
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),13450.21,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Jasenska 4, Praha'));
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),12000.00,0,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),NULL);
-INSERT INTO Objednavka VALUES(0,NULL,NOW(),800.00,0,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),11059.59,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),(SELECT id FROM Adresa WHERE adresa = 'Tomkova 24, Brno'));
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),1039.23,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),(SELECT id FROM Adresa WHERE adresa = 'Mladi 245, Ostrava'));
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),7000.50,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'customer'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),9089.20,1,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Bezrucova 2, Brno'));
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),13450.21,1,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),(SELECT id FROM Adresa WHERE adresa = 'Jasenska 4, Praha'));
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),12000.00,0,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),NULL);
+INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),800.00,0,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),NULL);
 
 INSERT INTO Pecivo VALUES(0,'rohlik','bily rohlik',1.20);
 INSERT INTO Pecivo VALUES(0,'chleb','kminovy chleb',28.50);
