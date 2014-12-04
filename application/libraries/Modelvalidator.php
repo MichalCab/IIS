@@ -40,7 +40,7 @@ class ModelValidator
         }
         
         $result["res"] = false;
-        if ($i == count($attributes))
+        if ($i == count($attributes) && $result["error"] == "")
             $result["res"] = true;
         
 	    return $result;
