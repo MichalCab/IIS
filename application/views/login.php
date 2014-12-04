@@ -39,7 +39,7 @@
 							<p class="last">
 								<input type="submit" value="Login" class="novisible" />
 								<a href="" class="button form_submit"><small class="icon play"></small><span>Login</span></a>
-								<a href="" class="button right"><small class="icon play"></small><span>Registrácia</span></a>
+								<a href="/user/add" class="button right"><small class="icon play"></small><span>Registrácia</span></a>
 								<br />
 							</p>
 							<div class="clear"></div>

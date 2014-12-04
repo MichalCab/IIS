@@ -10,7 +10,7 @@ class Auth
 	{
 	    $this->CI =& get_instance();
 
-	    session_start();
+	    //session_start();
 	    
 	    $id = isset($_SESSION['userId']) ? $_SESSION['userId'] : FALSE;
 	    

@@ -22,16 +22,23 @@ class User extends MY_Controller {
     {
         if ($this->auth->isLogged())
             redirect('/user', 'refresh');
+        
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if($this->muser->addUser($post_data))
-            {
-                $this->statman->setSuccessStatus("Úspešne ste sa zaregistrovali. Po aktivácií vedením sa môžete prihlásiť");
-                redirect('/user/login', 'refresh');
+            if ($post_data['heslo'] != $post_data['heslo_znovu']){
+                $this->load->view('register', $this->statman->setErrorNow("Zadané heslá nie sú rovnaké", $this->input->post()));
             }
             else
-                $this->load->view('register', $this->statman->setErrorNow("Všetky polia sú povinné", $this->input->post()));
+            {
+                if($this->muser->addUser($post_data))
+                {
+                    $this->statman->setSuccessStatus("Úspešne ste sa zaregistrovali. Po aktivácií vedením sa môžete prihlásiť");
+                    redirect('/user/login', 'refresh');
+                }
+                else
+                    $this->load->view('register', $this->statman->setErrorNow("Všetky polia sú povinné", $this->input->post()));
+            }
         }
         else
             $this->load->view('register', $this->statman->setActualStatus());

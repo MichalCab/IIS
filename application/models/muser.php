@@ -5,7 +5,8 @@ class MUser extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = array('vClen');
+        $this->table_names = array('vClen');
+        $this->table_insert_names = array('Clen');
     }
 
     public function getUsers()
@@ -16,13 +17,13 @@ class MUser extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addUser($data)
+    public function addUser(&$data)
     {    
         if (! $this->auth->isLogged())
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko');
         if ($this->auth->isAdmin())
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko', 'typ');
-        return $this->addRow($data, $attributes);
+        return $this->addRow($data, $attributes, array('heslo_znovu'));
     }
     public function editUser($data, $id)
     {

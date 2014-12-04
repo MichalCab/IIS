@@ -7,7 +7,7 @@ class ModelValidator
 		
 	}
 	
-	function valideInsert($inputs, $attributes, $unset_attributes=array())
+	function valideInsert(&$inputs, $attributes, $unset_attributes=array())
 	{
         $i = 0;
         $isNotInside = $attributes;
@@ -31,7 +31,7 @@ class ModelValidator
         //unset bcs of registration
         foreach ($unset_attributes as $key => $value)
         {
-            unset($inputs[$key]);
+            unset($inputs[$value]);
         }
         //kontrola povinosti
         foreach ($isNotInside as $key => $value)

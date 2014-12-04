@@ -15,7 +15,7 @@
 	<body>
 	    <div id="errorOnTop"></div>
 	    <?php $this->load->view('includes/_status', (isset($postMsg) ? $postMsg : null)); ?>
-	    <div id="wrapper">
+	    <div id="wrapper" class="mMarginTop100">
 			<div id="menu">
 				<div id="left"></div>
 				<div id="right"></div>
@@ -28,7 +28,7 @@
 						<form action="/user/add" method="post">
 							<p>
 								<label for="login">Login:</label>
-								<input type="text" name="login" id="login" value="" size="60" class="text" />
+								<input type="text" name="login" id="login" value="<?php echo isset($login) ? $login : '';?>" size="60" class="text" />
 								<br />
 							</p>
 							<p>
@@ -43,12 +43,12 @@
 							</p>
 							<p>
 								<label for="login">Meno:</label>
-								<input type="text" name="meno" id="meno" value="" size="60" class="text" />
+								<input type="text" name="meno" id="meno" value="<?php echo isset($meno) ? $meno : '';?>" size="60" class="text" />
 								<br />
 							</p>
 							<p>
 								<label for="heslo">Priezvisko:</label>
-								<input type="password" name="priezvisko" id="priezvisko" value="" size="60" class="text" />
+								<input type="password" name="priezvisko" id="priezvisko" value="<?php echo isset($priezvisko) ? $priezvisko : '';?>" size="60" class="text" />
 								<br />
 							</p>
 							<p class="last">

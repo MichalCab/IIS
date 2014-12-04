@@ -17,8 +17,8 @@ class MArea extends MY_Model {
         return $this->getRow($id);
     }
     public function addArea($data)
-    {    
-        $attributes = array('nazov')
+    {
+        $attributes = array('nazov');
         return $this->addRow($data, $attributes);
     }
     public function editArea($data, $id)
