@@ -27,7 +27,7 @@ class MAddress extends MY_Model {
             $attributes = array('adresa', 'clen');
 
         $non_empty_columns = array('adresa', 'clen');
-        return $this->addRow($id, $data, $attributes, array(), $non_empty_columns);
+        return $this->addRow($data, $attributes, array(), $non_empty_columns);
     }
     public function editAddress($id, &$data)
     {
