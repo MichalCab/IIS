@@ -21,7 +21,6 @@
     <div class="bottom"><div></div></div>
 </div>
 <div id="table" class="help">
-	<h1>Table:</h1>
 	<div class="col w10 last">
 		<div class="content">
 			<table><tbody>
@@ -29,14 +28,12 @@
 			        <th>Názov</th>
 					<th>Množstvo</th>
 					<th>Popis</th>
-					<th>Cena</th>
 				</tr>
 				<?php foreach ($order_products as $item): ?>
     				<tr>
     				    <td><?php echo $item->nazov; ?></td>
     					<td><?php echo $item->mnozstvo; ?></td>
     					<td><?php echo $item->popis; ?></td>
-    					<td><?php echo $item->cena; ?></td>
     				</tr>
 				<?php endforeach; ?>
 			</tbody></table>
