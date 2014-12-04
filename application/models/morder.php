@@ -49,26 +49,27 @@ class MOrder extends MY_Model {
             return false;
         */
         $non_empty_columns = array('podal', 'adresa','termin');
+        $data_copy = $data;
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
             $orderId = $this->getLastIdOfOrderByOrderNumber($this->db->insert_id());
             $data['order_products'] = array();
             $final_price = 0.0;
-            foreach ($data as $key => $value)
+            foreach ($data_copy as $key => $value)
             {
                 if ($key != "termin" && $key != "adresa" && $key != "podal")
                 {
                     $data['order_products'][$key] = $value;
                     if ($value != 0)
                     {
-                        $this->addProductToOrder($key, $orderId, $value);
+                        $this->addProductToOrder($key, $orderId, $value); #TODO it returns tru/false
                     }
                     $price = $this->getProductPrice($key);
                     $final_price += $value * $price;
                 }
             }
-            $this->editFinalPriceOfOrder($id, $final_price);
+            $this->editFinalPriceOfOrder($orderId, $final_price);
         }
         return $data;
     }
@@ -92,7 +93,7 @@ class MOrder extends MY_Model {
         $query->free_result();
         return $result->cena;
     }
-    public function addProductToOrder($idProduct, $orderId, $value)
+    public function addProductToOrder($productId, $orderId, $value)
     {
         $data = array('objednavka'=>$orderId, 'pecivo'=>$productId, 'mnozstvo'=>$value);
         $this->db->insert('Zoznam', $data);
@@ -100,7 +101,7 @@ class MOrder extends MY_Model {
     }   
     public function editFinalPriceOfOrder($id, $price)
     {
-        $data = array("price"=>$price);
+        $data = array("suma"=>$price);
         $this->db->where('id', $id);
         $this->db->update('Objednavka', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
