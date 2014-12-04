@@ -22,6 +22,7 @@ class Address extends MY_Controller {
         {
             $post_data = $this->input->post();
             $post_data["clen"] = $this->userData->id;
+            var_dump($post_data);
             if($this->maddress->addAddress($post_data))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali adresu");
