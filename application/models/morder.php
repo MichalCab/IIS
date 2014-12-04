@@ -70,7 +70,7 @@ class MOrder extends MY_Model {
                     $final_price += $value * $price;
                 }
             }
-            $this->editFinalPriceOfOrder($id, $final_price);
+            $this->editFinalPriceOfOrder($orderId, $final_price);
         }
         return $data;
     }
