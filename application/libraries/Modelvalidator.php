@@ -7,7 +7,7 @@ class ModelValidator
 		
 	}
 	
-	function valideInsert(&$inputs, $attributes, $unset_attributes=array())
+	function valideInsert(&$inputs, $attributes, $unset_attributes=array(), $non_empty=array())
 	{
         $i = 0;
         $isNotInside = $attributes;
@@ -17,14 +17,20 @@ class ModelValidator
         {
             if (in_array($key, $attributes))
             {
+                // kontrolujeme zadane 
+                if (in_array($key, $non_empty))
+                {
+                    if ($value == "")
+                        $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
+                }
                 $i++;
-                if ($value == "")
-                    $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
                 $isNotInside = array_diff($isNotInside, array($key));
             }
             else
             {
+                // odpalime nezadane
                 $result["warning"] = $result["warning"] . "Atribut '". $key . "' je nežádaný</br>";
+                unset($inputs[$key]);
             }
         }
         //unset bcs of registration
@@ -45,8 +51,8 @@ class ModelValidator
         
 	    return $result;
 	}
-    function valideUpdate(&$inputs, $attributes)
+    function valideUpdate(&$inputs, $attributes, $unset_attributes=array(), $non_empty=array())
     {
-        return $this->valideInsert($inputs, $attributes);
+        return $this->valideInsert($inputs, $attributes, $unset_attributes, $non_empty);
     }
 }

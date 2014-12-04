@@ -34,8 +34,8 @@ class MOrder extends MY_Model {
         $data['podal'] = $userId;
         if (isset($data["adresa"]))
         {
-            if ($data["adresa"] == 'null')
-                unset($data["adresa"]);
+            if (strtolower($data["adresa"]) == 'null')
+                $data["adresa"] = NULL;
         }
         else
             return false; 
