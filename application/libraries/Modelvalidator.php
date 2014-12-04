@@ -20,7 +20,7 @@ class ModelValidator
                 // kontrolujeme zadane 
                 if (in_array($key, $non_empty))
                 {
-                    if ($value == "")
+                    if ($value == NULL || $value == "")
                         $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
                 }
                 $i++;

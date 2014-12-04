@@ -38,9 +38,8 @@ class MOrder extends MY_Model {
             if (strtolower($data["adresa"]) == 'null')
                 $data["adresa"] = NULL;
         }
-        else
-            return false;
 
+        /*
         if (isset($data["termin"]))
         {
             if (count(strtolower($data["termin"])) != 10)
@@ -48,12 +47,12 @@ class MOrder extends MY_Model {
         }
         else
             return false;
-
-        $non_empty_columns = array("");
+        */
+        $non_empty_columns = array('podal', 'adresa','termin');
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
-            $orderId = getLastIdofOrderByOrderNumber($this->db->insert_id());
+            $orderId = getLastIdOfOrderByOrderNumber($this->db->insert_id());
             $data['order_products'] = array();
             $final_price = 0.0;
             foreach ($data as $key => $value)
@@ -73,7 +72,7 @@ class MOrder extends MY_Model {
         }
         return $data;
     }
-    public function getLastIdofOrderByOrderNumber($cislo)
+    public function getLastIdOfOrderByOrderNumber($cislo)
     {
         $this->db->select('id');
         $this->db->from('Objednavka');

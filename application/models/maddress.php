@@ -24,9 +24,10 @@ class MAddress extends MY_Model {
     public function addAddress(&$data)
     {    
         if ($this->auth->isCustomer())
-            $attributes = array('adresa');
+            $attributes = array('adresa', 'clen');
 
-        return $this->addRow($data, $attributes);
+        $non_empty_columns = array('adresa', 'clen');
+        return $this->addRow($id, $data, $attributes, array(), $non_empty_columns);
     }
     public function editAddress($id, &$data)
     {
