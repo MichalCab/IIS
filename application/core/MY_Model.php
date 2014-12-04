@@ -12,7 +12,7 @@ class MY_Model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from($this->table_names[$table_index]);
-        if ($id != $id)
+        if ($column != $id)
             $this->db->where($column, $id);
         $query = $this->db->get();
         $result = $query->result();
