@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$( ".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
+	$(".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
 	
 	$('.ajax').click(function(e){
 		var id = $(this).attr('ajax-id');
