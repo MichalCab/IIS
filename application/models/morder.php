@@ -23,7 +23,7 @@ class MOrder extends MY_Model {
     }
     public function getOrder($id)
     {
-        return $this->getRow($id);
+        return $this->getRow($id, 2);
     }
 
     public function addOrder($data)
