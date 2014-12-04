@@ -25,7 +25,7 @@ class ModelValidator
                 if ($value == "")
                     $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
                 //echo "\n unsetting" .  $key;
-                unset($isNotInside[$key]);
+                $isNotInside = array_diff($isNotInside, array($key));
             }
             else
             {
