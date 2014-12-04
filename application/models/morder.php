@@ -32,6 +32,13 @@ class MOrder extends MY_Model {
             $attributes = array('podal', 'termin', 'adresa');
         
         $data['podal'] = $userId;
+        if (isset($data["adresa"]))
+        {
+            if ($data["adresa"] == 'null')
+                unset($data["adresa"]);
+        }
+        else
+            return false; 
         $orderError = $this->addRow($data, $attributes);
         if ($orderError)
         {
