@@ -8,9 +8,13 @@ class Auth
 
 	function __construct()
 	{
-		$this->CI =& get_instance();
+	    $this->CI =& get_instance();
 
-		$id = $this->CI->input->cookie($this->cookieAuthName, FALSE);
+	    session_start();
+	    
+	    $id = isset($_SESSION['userId']) ? $_SESSION['userId'] : FALSE;
+	    
+		//$id = $this->CI->input->cookie($this->cookieAuthName, FALSE);
 		
 		if ($id)
 		{
@@ -58,7 +62,9 @@ class Auth
 	    
 	    if ($this->isLogged())
 	    {
-	        $this->CI->cookieman->setCookie($this->cookieAuthName, $this->user->id);
+	        //$this->CI->cookieman->setCookie($this->cookieAuthName, $this->user->id);
+	        $_SESSION['userId'] = $this->user->id;
+	        session_regenerate_id(true);
 	        return true;
 	    }
 	    
@@ -67,6 +73,12 @@ class Auth
 	
 	function logout()
 	{
+	    unset($_SESSION['userId']);
 	    $this->CI->cookieman->deleteCookie($this->cookieAuthName);
+	}
+	
+	function getCookieAuthName ()
+	{
+	    return $this->cookieAuthName;
 	}
 }
