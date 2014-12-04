@@ -32,17 +32,28 @@ class MOrder extends MY_Model {
             $attributes = array('podal', 'termin', 'adresa');
         
         $data['podal'] = $userId;
+        // validation
         if (isset($data["adresa"]))
         {
             if (strtolower($data["adresa"]) == 'null')
                 $data["adresa"] = NULL;
         }
         else
-            return false; 
-        $orderError = $this->addRow($data, $attributes);
+            return false;
+
+        if (isset($data["termin"]))
+        {
+            if (count(strtolower($data["termin"])) != 10)
+                return false;
+        }
+        else
+            return false;
+
+        $non_empty_columns = array("");
+        $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
         {
-            $orderId = $this->db->insert_id();
+            $orderId = getLastIdofOrderByOrderNumber($this->db->insert_id());
             $data['order_products'] = array();
             $final_price = 0.0;
             foreach ($data as $key => $value)
@@ -52,7 +63,7 @@ class MOrder extends MY_Model {
                     $data['order_products'][$key] = $value;
                     if ($value != 0)
                     {
-                        $this->addProductToOrder($key ,$orderId, $value);
+                        $this->addProductToOrder($key, $orderId, $value);
                     }
                     $price = $this->getProductPrice($key);
                     $final_price += $value * $price;
@@ -61,6 +72,16 @@ class MOrder extends MY_Model {
             $this->editFinalPriceOfOrder($id, $final_price);
         }
         return $data;
+    }
+    public function getLastIdofOrderByOrderNumber($cislo)
+    {
+        $this->db->select('id');
+        $this->db->from('Objednavka');
+        $this->db->where('cislo', $cislo);
+        $query = $this->db->get();
+        $result = $query->row();
+        $query->free_result();
+        return $result->id;
     }
     public function getProductPrice($id)
     {
@@ -72,9 +93,9 @@ class MOrder extends MY_Model {
         $query->free_result();
         return $result->cena;
     }
-    public function addProductToOrder($idProduct, $idOrder, $value)
+    public function addProductToOrder($idProduct, $orderId, $value)
     {
-        $data = array('objednavka'=>$idOrder, 'pecivo'=>$idProduct, 'mnozstvo'=>$value);
+        $data = array('objednavka'=>$orderId, 'pecivo'=>$productId, 'mnozstvo'=>$value);
         $this->db->insert('Zoznam', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }   
