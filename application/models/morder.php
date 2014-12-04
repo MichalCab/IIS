@@ -102,7 +102,7 @@ class MOrder extends MY_Model {
     }   
     public function editFinalPriceOfOrder($id, $price)
     {
-        $data = array("price"=>$price);
+        $data = array("suma"=>$price);
         $this->db->where('id', $id);
         $this->db->update('Objednavka', $data);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
