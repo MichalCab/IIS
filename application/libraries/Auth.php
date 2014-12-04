@@ -10,7 +10,7 @@ class Auth
 	{
 	    $this->CI =& get_instance();
 
-	    //session_start();
+	    session_start();
 	    
 	    $id = isset($_SESSION['userId']) ? $_SESSION['userId'] : FALSE;
 	    
@@ -74,7 +74,7 @@ class Auth
 	function logout()
 	{
 	    unset($_SESSION['userId']);
-	    $this->CI->cookieman->deleteCookie($this->cookieAuthName);
+	    //$this->CI->cookieman->deleteCookie($this->cookieAuthName);
 	}
 	
 	function getCookieAuthName ()
