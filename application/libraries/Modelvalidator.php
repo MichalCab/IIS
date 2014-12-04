@@ -33,16 +33,13 @@ class ModelValidator
             unset($inputs[$value]);
         }
         //kontrola povinosti
-        echo "\n not unsetted";
-        var_dump($isNotInside);
-        echo "\n unsetted";
         foreach ($isNotInside as $key => $value)
         {
             $result["error"] = $result["error"] . "Atribut '". $value . "' je povinný</br>";
         }
         
         $result["res"] = false;
-        echo "\ni" . $i . "count(attributes)" . count($attributes) . $result["error"];
+        
         if ($i == count($attributes) && $result["error"] == "")
             $result["res"] = true;
         

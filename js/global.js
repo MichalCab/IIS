@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	
+	$( ".datepicker" ).datepicker({ minDate: 1 });
+	
 	$('.ajax').click(function(e){
 		var id = $(this).attr('ajax-id');
 		var postUrl = $(this).attr('href');
