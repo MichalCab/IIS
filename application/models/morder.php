@@ -5,21 +5,21 @@ class MOrder extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_names = array('vObjednavka', 'vObjednavkaPecivo');
+        $this->table_names = array('vObjednavka', 'vObjednavkaPecivo', 'vObjednavkaAdresa');
         $this->table_insert_names = array('Objednavka', 'Zoznam');
     }
 
     public function getCustomerOrders($id)
     {
-        return $this->getRows('podal', $id, 0);
+        return $this->getRows('podal', $id, 2);
     }
     public function getDriverOrders($id)
     {
-        return $this->getRows('vodic', $id, 0);
+        return $this->getRows('vodic', $id, 2);
     }
     public function getManagementOrders()
     {
-        return $this->getRows(NULL, NULL, 0);
+        return $this->getRows(NULL, NULL, 2);
     }
     public function getOrder($id)
     {
@@ -29,7 +29,7 @@ class MOrder extends MY_Model {
     public function addOrder($data)
     {   
         if ($this->auth->isCustomer()) 
-            $attributes = array('adresa, podal, suma');
+            $attributes = array('podal, suma');
         return $this->addRow($data, $attributes);
     }
     public function editOrder($data, $id)
