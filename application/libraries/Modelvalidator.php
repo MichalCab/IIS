@@ -24,6 +24,7 @@ class ModelValidator
                 $i++;
                 if ($value == "")
                     $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
+                echo "\n unsetting" .  $key;
                 unset($isNotInside[$key]);
             }
             else
@@ -32,6 +33,7 @@ class ModelValidator
             }
         }
         //unset bcs of registration
+        echo "\n not unsetted" . var_dump($isNotInside);
         foreach ($unset_attributes as $key => $value)
         {
             unset($inputs[$value]);
@@ -43,6 +45,7 @@ class ModelValidator
         }
         
         $result["res"] = false;
+        echo "\ni" . $i . "count(attributes)" . count($attributes) . $result["error"];
         if ($i == count($attributes) && $result["error"] == "")
             $result["res"] = true;
         
