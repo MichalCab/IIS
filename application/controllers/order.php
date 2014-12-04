@@ -31,7 +31,7 @@ class Order extends MY_Controller {
             else
             {
                 $data['data']['order'] = (object) $post_data;
-                $data['data']['addresses'] = $this->maddress->getAddresses($this->userData->id);
+                $data['data']['addresses'] = $this->maddress->getCustomerAddresses($this->userData->id);
                 $data['data']['products'] = $this->mproduct->getProducts();
                 $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
