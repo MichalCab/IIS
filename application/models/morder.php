@@ -62,6 +62,7 @@ class MOrder extends MY_Model {
                     $data['order_products'][$key] = $value;
                     if ($value != 0)
                     {
+                        var_dump($value);
                         $this->addProductToOrder($key, $orderId, $value);
                     }
                     $price = $this->getProductPrice($key);
@@ -92,7 +93,7 @@ class MOrder extends MY_Model {
         $query->free_result();
         return $result->cena;
     }
-    public function addProductToOrder($idProduct, $orderId, $value)
+    public function addProductToOrder($productId, $orderId, $value)
     {
         $data = array('objednavka'=>$orderId, 'pecivo'=>$productId, 'mnozstvo'=>$value);
         $this->db->insert('Zoznam', $data);
