@@ -16,7 +16,7 @@ class ModelValidator
         //kontrola prázdnosti a nežádanosti
         var_dump($inputs);
         var_dump($attributes);
-        var_dump($unset_attributes)
+        var_dump($unset_attributes);
         foreach ($inputs as $key => $value)
         {
             if (in_array($key, $attributes))
