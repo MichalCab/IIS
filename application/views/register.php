@@ -20,7 +20,7 @@
 				<div id="left"></div>
 				<div id="right"></div>
 				<h2>Registrácia</h2>
-				<div class="clear"></div>		
+				<div class="clear"></div>
 			</div>
 			<div id="desc">
 				<div class="body">
