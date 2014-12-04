@@ -21,7 +21,6 @@ class MUser extends MY_Model {
     {    
         if (! $this->auth->isLogged())
         {
-            var_dump($data);
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko');
         }
         if ($this->auth->isAdmin())

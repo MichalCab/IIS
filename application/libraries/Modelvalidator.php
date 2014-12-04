@@ -13,10 +13,6 @@ class ModelValidator
         $isNotInside = $attributes;
         $result["error"] = "";
         $result["warning"] = "";
-        //kontrola prázdnosti a nežádanosti
-        //var_dump($inputs);
-        //var_dump($attributes);
-        //var_dump($unset_attributes);
         foreach ($inputs as $key => $value)
         {
             if (in_array($key, $attributes))
@@ -24,7 +20,6 @@ class ModelValidator
                 $i++;
                 if ($value == "")
                     $result["error"] = $result["error"] . "Atribut '" . $key . "' je prázdný!</br>";
-                //echo "\n unsetting" .  $key;
                 $isNotInside = array_diff($isNotInside, array($key));
             }
             else
@@ -33,7 +28,6 @@ class ModelValidator
             }
         }
         //unset bcs of registration
-        //echo "\n not unsetted" . var_dump($isNotInside);
         foreach ($unset_attributes as $key => $value)
         {
             unset($inputs[$value]);
