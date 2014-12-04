@@ -8,9 +8,9 @@ class MProduct extends MY_Model {
         $this->table_names = array('vPecivo', 'vPecivoSurovina');
     }
 
-    public function getProducts($id)
+    public function getProducts()
     {
-        return $this->getRows($id, $id, 0);
+        return $this->getRows(NULL, NULL, 0);
     }
     public function getProduct($id)
     {
