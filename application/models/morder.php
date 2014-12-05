@@ -111,11 +111,11 @@ class MOrder extends MY_Model {
         $this->db->from('vVodicAdresa');
         $this->db->where('AdresaId', $adresaId);
         $query = $this->db->get();
-        $result = $query->row();
-        if ($result === NULL)
+        $result = $query->result();
+        if (isset($result) && count($result) > 0)
             return NULL;
         $query->free_result();
-        return $result->id;
+        return $result[0]->id;
     }
     public function getLastIdOfOrderByOrderNumber($cislo)
     {
