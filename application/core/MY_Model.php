@@ -44,8 +44,8 @@ class MY_Model extends CI_Model {
     */
     public function getRows($column, $id, $table_index)
     {
-        if ((count($this->table_names) - 1) < $table_index)
-            $table_index = 0;
+        #if ((count($this->table_names) - 1) < $table_index)
+        #    $table_index = 0;
         $this->db->select('*');
         $this->db->from($this->table_names[$table_index]);
         if ($column != NULL)
