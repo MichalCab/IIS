@@ -7,12 +7,12 @@
 		</p>
 		<p>
 			<label for="heslo">Heslo:</label>
-			<input type="text" name="heslo" id="heslo" value="" size="60" class="text" />
+			<input type="password" name="heslo" id="heslo" value="" size="60" class="text" />
 			<br />
 		</p>
 		<p>
 			<label for="heslo_znovu">Heslo znovu:</label>
-			<input type="text" name="heslo_znovu" id="heslo_znovu" value="" size="60" class="text" />
+			<input type="password" name="heslo_znovu" id="heslo_znovu" value="" size="60" class="text" />
 			<br />
 		</p>
 		<p>

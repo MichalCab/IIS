@@ -19,6 +19,7 @@ class Auth
 		if ($id)
 		{
 			$this->CI->db->where('id', $id);
+			$this->CI->db->where('evidovany', 1);
 			$query = $this->CI->db->get('vClen');
 
 			$this->user = $query->row();

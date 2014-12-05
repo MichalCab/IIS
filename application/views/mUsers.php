@@ -2,7 +2,7 @@
     $('#submenu').removeClass('mDestroy');
 </script>
 <div id="table" class="help">
-	<h1>Table:</h1>
+	<h1>Používatelia:</h1>
 	<div class="col w10 last">
 		<div class="content">
 			<table><tbody>
@@ -27,7 +27,7 @@
         					<td>
         					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" ajax-action="delete" class="button ajax mRight"><small class="icon cross"></small><span>Zmazať</span></a>
         					   <?php if(!$item->evidovany): ?>
-        					       <a href="/<?php echo $this->router->class; ?>/set" ajax-id="<?php echo $item->id; ?>" ajax-action="stateChange" ajax-noanimation="true" class="button ajax mRight"><small class="icon check"></small><span>Aktivovať</span></a>
+        					       <a href="/<?php echo $this->router->class; ?>/set" ajax-id="<?php echo $item->id; ?>" ajax-erase="true" ajax-action="stateChange" ajax-noanimation="true" class="button ajax mRight"><small class="icon check"></small><span>Aktivovať</span></a>
         					   <?php endif;?>
         					</td>
         				</tr>

@@ -15,6 +15,7 @@ function ajaxCall(e){
 	var action = $(this).attr('ajax-action');
 	var noAnim = $(this).attr('ajax-noanimation');
 	var ajaxData = $(this).attr('ajax-data');
+	var ajaxSelfErase = $(this).attr('ajax-erase');
 	
 	msgs = ajaxMsg[action]; 
 	
@@ -34,12 +35,16 @@ function ajaxCall(e){
 		noty({type: 'error', text: msgs.error, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
 	}
 	
+	var mthis = this;
+	
 	$.post(postUrl, data, function(data,status){
 		var result = JSON.parse(data);
 		if (noAnim != undefined){
-			if (result === true)
+			if (result === true){
 				succMsgCall();
-			else
+				if (eraseSelf != undefined)
+					$(mthis).remove();
+			}else
 				errMsgCall();
 		} else {
 			if(result === true) {
