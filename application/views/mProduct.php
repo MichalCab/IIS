@@ -19,7 +19,8 @@
         					<td><?php echo $item->nakupnaCena; ?></td>
         					<td><?php echo $item->naSklade; ?></td>
         					<td>
-        					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" ajax-action="delete" class="button ajax mRight"><small class="icon cross"></small><span>Vypnúť</span></a>
+        					   <a href="/<?php echo $this->router->class; ?>/set" ajax-id="<?php echo $item->id; ?>" ajax-action="statusChange" class="button ajax mRight"><small class="icon cross"></small><span>Vypnúť</span></a>
+        					   <a href="/<?php echo $this->router->class; ?>/get/<?php echo $item->id; ?>" class="button mRight"><small class="icon looking_glass"></small><span>Detail</span></a>
         					</td>
         				</tr>
     				<?php endforeach; ?>
