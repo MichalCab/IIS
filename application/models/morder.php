@@ -89,8 +89,30 @@ class MOrder extends MY_Model {
                 }
             }
             $this->editFinalPriceOfOrder($orderId, $final_price);
+            if ($data["adresa"] != 'null')
+            {
+                $driverId = $this->getDriverId($data["adresa"]);
+                $this->setOrderDriver($orderId, $driverId);
+            }
         }
         return $data;
+    }
+    public function setOrderDriver($id, $driverId)
+    {
+        $data = array("vodic"=>$driverId);
+        $this->db->where('id', $id);
+        $this->db->update('Objednavka', $data);
+        return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+    }
+    public function getDriverId($adresaId)
+    {
+        $this->db->select('id');
+        $this->db->from('vVodicAdresa');
+        $this->db->where('AdresaId', $adresaId);
+        $query = $this->db->get();
+        $result = $query->row();
+        $query->free_result();
+        return $result->id;
     }
     public function getLastIdOfOrderByOrderNumber($cislo)
     {
