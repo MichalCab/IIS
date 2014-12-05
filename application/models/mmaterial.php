@@ -7,8 +7,6 @@ class MMaterial extends MY_Model {
         parent::__construct();
         $this->table_names = array('vSurovina');
         $this->table_insert_names = array('Surovina');
-        $this->attributes = array('nazov', 'nakupnaCena', 'naSklade');
-        $this->non_empty_columns = array('nazov', 'nakupnaCena', 'naSklade');
     }
 
     public function getMaterials()
