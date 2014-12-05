@@ -41,8 +41,13 @@ class MAddress extends MY_Model {
         {
             $attributes = array('oblast');
             $non_empty_columns = array('oblast');
+            // 'null' > NULL
+            if (isset($data["oblast"]))
+            {
+                if (strtolower($data["oblast"]) == 'null')
+                    $data["oblast"] = NULL;
+            }
         }
-
         
         return $this->editRow($id, $data, $attributes, array(), $non_empty_columns);
     }
