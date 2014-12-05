@@ -14,10 +14,10 @@ $(document).ready(function() {
 				$('#'+id).addClass('hideAnim');
 				setTimeout(function(){
 					$('#'+id).remove();
-					$().Message({type:'success',time:4000,text:"Položka bola úspešne zmazaná",target:"#errorOnTop",click:true});
+					$.noty.defaults = {type: 'Success', text: "Položka bola úspešne zmazaná", timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'};
 				}, 200);
 			} else {
-				$().Message({type:'error',time:4000,text:((result == false) ? 'Položku sa nepodarilo zmazať' : result),target:"#errorOnTop",click:true});
+				$.noty.defaults = {type: 'Error', text: "Položku sa nepodarilo zmazať", timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'};
 			}
 		});
 		
@@ -30,14 +30,14 @@ $(document).ready(function() {
 	//This is the Modal window calling	
 	
 	//This function is for the form submit
-	$(document).on("click", "a.form_submit", function(){
+	$("a.form_submit").live("click", function(){
 		$(this).closest('form').submit();
 		return false;
 	});	
 	//This function is for the form submit
 
 	//This function is for the dropdown module
-	$(document).on("click", "a.dropdown_button", function(){
+	$("a.dropdown_button").live("click", function(){
 		$('.dropdown').stop().slideUp();
 		$(this).next().stop().slideToggle();
 		return false;
@@ -45,7 +45,7 @@ $(document).ready(function() {
 	//This function is for the dropdown module
 
 	//This function is for the dropdown module, this is the close button
-	$(document).on("click", ".dropdown .close", function(){
+	$(".dropdown .close").live("click", function(){
 		$(this).closest('.dropdown').stop().slideUp();
 		return false;
 	});
@@ -66,7 +66,7 @@ $(document).ready(function() {
 * Created by Peter Viszt (gtpassatgt@gmail.com) on 2010-10-01.
 *
 */
-(function(a){a.fn.Message=function(b){var c={type:"error",time:2000,text:"Error!",target:"#messages",click:true};var b=a.extend(c,b);var d=Math.ceil(Math.random()*10000);return this.each(function(){var e='<div class="'+b.type+'" id="'+d+'" style="display:none"><div class="tl"></div><div class="tr"></div><div class="desc"><p>'+b.text+'</p></div><div class="bl"></div class="br"><div></div></div>';a(b.target).append(e);if(b.click){a("#"+d).addClass("click_close")}a("#"+d).slideDown(function(){setTimeout(function(){a("#"+d).slideUp(function(){a("#"+d).remove()})},b.time)});a(document).on("click", ".click_close",function(){a(this).slideUp(function(){a(this).remove()})})})}})(jQuery);
+(function(a){a.fn.Message=function(b){var c={type:"error",time:2000,text:"Error!",target:"#messages",click:true};var b=a.extend(c,b);var d=Math.ceil(Math.random()*10000);return this.each(function(){var e='<div class="'+b.type+'" id="'+d+'" style="display:none"><div class="tl"></div><div class="tr"></div><div class="desc"><p>'+b.text+'</p></div><div class="bl"></div class="br"><div></div></div>';a(b.target).append(e);if(b.click){a("#"+d).addClass("click_close")}a("#"+d).slideDown(function(){setTimeout(function(){a("#"+d).slideUp(function(){a("#"+d).remove()})},b.time)});a(".click_close").live("click",function(){a(this).slideUp(function(){a(this).remove()})})})}})(jQuery);
 
 /*
 * jQuery custom checkbox plugin
