@@ -35,11 +35,11 @@ INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),13450.21,1,(SELECT id FROM Clen W
 INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),12000.00,0,(SELECT id FROM Clen WHERE login = 'driver'),(SELECT id FROM Clen WHERE login = 'matyas_krc'),NULL);
 INSERT INTO Objednavka VALUES(0,NULL,CURDATE(),800.00,0,(SELECT id FROM Clen WHERE login = 'pavel_novotny'),(SELECT id FROM Clen WHERE login = 'otakar_hluchy'),NULL);
 
-INSERT INTO Pecivo VALUES(0,'rohlik','bily rohlik',1.20);
-INSERT INTO Pecivo VALUES(0,'chleb','kminovy chleb',28.50);
-INSERT INTO Pecivo VALUES(0,'makovnik','tradicni od babicky',27.90);
-INSERT INTO Pecivo VALUES(0,'bageta','dlouha bageta',8.20);
-INSERT INTO Pecivo VALUES(0,'kobliha','cokoladova kobliha',12.20);
+INSERT INTO Pecivo VALUES(0,'rohlik','bily rohlik',1.20,1);
+INSERT INTO Pecivo VALUES(0,'chleb','kminovy chleb',28.50,1);
+INSERT INTO Pecivo VALUES(0,'makovnik','tradicni od babicky',27.90,1);
+INSERT INTO Pecivo VALUES(0,'bageta','dlouha bageta',8.20,1);
+INSERT INTO Pecivo VALUES(0,'kobliha','cokoladova kobliha',12.20,1);
 
 INSERT INTO Surovina VALUES(0,'mouka',1000.20,1200.6);
 INSERT INTO Surovina VALUES(0,'cukr',1200.20,1000);
