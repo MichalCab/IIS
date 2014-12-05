@@ -26,12 +26,14 @@
             					<th>Množstvo</th>
             					<th>Cena</th>
             				</tr>
-            				<?php if(!empty($products)): ?>
+            				<?php
+            				    $myorder = (isset($order)) ? (array) $order : null; 
+            				    if(!empty($products)): ?>
             				    <?php foreach ($products as $item): ?>
                     				<tr>
                     				    <td><?php echo $item->nazov; ?></td>
                     				    <td><?php echo $item->popis; ?></td>
-                    					<td><input type="number" name="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>" value="<?php echo (isset($order->order_products[$item->id]) ? $products[$item->id] : '0'); ?>" size="60" class="text" min="0" /></td>
+                    					<td><input type="number" name="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>" value="<?php echo (isset($myorder[$item->id])) ? $myorder[$item->id] : '0'; ?>" size="60" class="text" min="0" /></td>
                     					<td><?php echo $item->cena; ?></td>
                     				</tr>
                 				<?php endforeach; ?>
