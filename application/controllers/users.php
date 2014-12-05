@@ -56,7 +56,7 @@ class Users extends MY_Controller {
         {
             $id = $this->input->post('id', FALSE);
             $post_data['evidovany'] = 1;
-            echo json_encode($this->muser->updateUser($post_data, $id, array('evidovany')));
+            echo json_encode($this->muser->editUser($id, $post_data, array('evidovany'), NULL, array('evidovany')));
         }
         else
             echo json_encode(FALSE);

@@ -28,8 +28,10 @@ class MUser extends MY_Model {
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko');
         }
         if ($this->auth->isAdmin())
+        {
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko', 'typ');
-        return $this->addRow($data, $attributes, array('heslo_znovu'));
+        }
+        return $this->addRow($data, $attributes, array('heslo_znovu'), $attributes);
     }
     public function editUser($id, $data)
     {

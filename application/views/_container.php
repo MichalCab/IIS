@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
-		<title>Gray Admin Template</title>
+		<title>Informační systém Pekárny</title>
 		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="/css/myStyle.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div id="footer">
-			<p class="last">Copyright 2014 - Gray Admin Template - Created by <a href=""></a></p>
+			<p class="last">Copyright 2014 - Created by Michal Cáb and Filip Ilavský<a href=""></a></p>
 		</div>
 	</body>
 </html>
