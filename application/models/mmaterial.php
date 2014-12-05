@@ -5,7 +5,7 @@ class MMaterial extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = array('vSurovina');
+        $this->table_names = array('vSurovina');
         $this->table_insert_names = array('Surovina');
         $this->attributes = array('nazov', 'nakupniCena', 'naSklade');
         $this->non_empty = array('nazov', 'nakupniCena', 'naSklade');
