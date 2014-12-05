@@ -33,7 +33,7 @@ class MUser extends MY_Model {
         }
         return $this->addRow($data, $attributes, array('heslo_znovu'), $attributes);
     }
-    public function editUser($id, $data)
+    public function editUser($id, &$data)
     {
         if ($this->auth->isAdmin())
             $attributes = array('evidovany');

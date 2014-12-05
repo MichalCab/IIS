@@ -19,11 +19,11 @@ class MMaterial extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addMaterial($data)
+    public function addMaterial(&$data)
     {
         return $this->addRow($data, $attributes);
     }
-    public function editMaterial($id, $data)
+    public function editMaterial($id, &$data)
     {
         return $this->editRow($id, $data);
     }
