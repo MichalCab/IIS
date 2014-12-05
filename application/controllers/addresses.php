@@ -6,22 +6,23 @@ class Addresses extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('maddress');
-        $this->load->model('areaaddress');
+        $this->load->model('marea');
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
-            redirect('/user/login/', 'refresh');
+            redirect('/user', 'refresh');
     }
     public function index()
     {
-        $data['addresses'] = $this->maddress->getManagementAddresses()
-        $data['']
-        $this->load->view('_container', $this->address, $data);
+        $data['data']['addresses'] = $this->maddress->getManagementAddresses(); #TODO use vOblastRozvozuAdresa?
+        $data['data']['areas'] = $this->marea->getAreas();
+        $data['view'] = 'mAddresses';
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
     public function assignarea()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            echo json_encode($this->maddress->asignArea($post_data));
+            echo json_encode($this->maddress->editAddress($post_data));
         }
         else
             echo json_encode(FALSE);
