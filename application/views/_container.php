@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="/css/myStyle.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-        <script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
+        <script type="text/javascript" src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		<script src="/js/global.js" type="text/javascript" charset="utf-8"></script>
 	</head>

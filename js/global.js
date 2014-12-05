@@ -1,3 +1,14 @@
+var ajaxMsg = {
+		'delete': {
+			success: "Položka bola úspešne zmazaná",
+			error: "Položku sa nepodarilo zmazať"
+		},
+		'stateChange': {
+			success: "Položka bola úspešne upravená",
+			error: "Položku sa nepodarilo upraviť"
+		},
+};
+
 $(document).ready(function() {
 	
 	$(".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
@@ -5,6 +16,9 @@ $(document).ready(function() {
 	$('.ajax').click(function(e){
 		var id = $(this).attr('ajax-id');
 		var postUrl = $(this).attr('href');
+		var action = $(this).attr('ajax-action');
+		
+		msgs = ajaxMsg[action]; 
 		
 		e.preventDefault();
 		
@@ -14,30 +28,25 @@ $(document).ready(function() {
 				$('#'+id).addClass('hideAnim');
 				setTimeout(function(){
 					$('#'+id).remove();
-					$.noty.defaults = {type: 'Success', text: "Položka bola úspešne zmazaná", timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'};
+					noty({type: 'success', text: msgs.success, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
 				}, 200);
 			} else {
-				$.noty.defaults = {type: 'Error', text: "Položku sa nepodarilo zmazať", timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'};
+				noty({type: 'error', text: msgs.error, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
 			}
 		});
 		
 		return false;
-	});
-	
-	//This is the Modal window calling	
-	$('.modal').modal();
-	$('.modal_custom').modal({width:700,showSpeed:2000,closeSpeed:2000,title:false,skin:"red"});
-	//This is the Modal window calling	
+	});	
 	
 	//This function is for the form submit
-	$("a.form_submit").live("click", function(){
+	$(document).on("click", "a.form_submit", function(){
 		$(this).closest('form').submit();
 		return false;
 	});	
 	//This function is for the form submit
 
 	//This function is for the dropdown module
-	$("a.dropdown_button").live("click", function(){
+	$(document).on("click", "a.dropdown_button", function(){
 		$('.dropdown').stop().slideUp();
 		$(this).next().stop().slideToggle();
 		return false;
@@ -45,7 +54,7 @@ $(document).ready(function() {
 	//This function is for the dropdown module
 
 	//This function is for the dropdown module, this is the close button
-	$(".dropdown .close").live("click", function(){
+	$(document).on("click", ".dropdown .close", function(){
 		$(this).closest('.dropdown').stop().slideUp();
 		return false;
 	});
@@ -66,7 +75,7 @@ $(document).ready(function() {
 * Created by Peter Viszt (gtpassatgt@gmail.com) on 2010-10-01.
 *
 */
-(function(a){a.fn.Message=function(b){var c={type:"error",time:2000,text:"Error!",target:"#messages",click:true};var b=a.extend(c,b);var d=Math.ceil(Math.random()*10000);return this.each(function(){var e='<div class="'+b.type+'" id="'+d+'" style="display:none"><div class="tl"></div><div class="tr"></div><div class="desc"><p>'+b.text+'</p></div><div class="bl"></div class="br"><div></div></div>';a(b.target).append(e);if(b.click){a("#"+d).addClass("click_close")}a("#"+d).slideDown(function(){setTimeout(function(){a("#"+d).slideUp(function(){a("#"+d).remove()})},b.time)});a(".click_close").live("click",function(){a(this).slideUp(function(){a(this).remove()})})})}})(jQuery);
+(function(a){a.fn.Message=function(b){var c={type:"error",time:2000,text:"Error!",target:"#messages",click:true};var b=a.extend(c,b);var d=Math.ceil(Math.random()*10000);return this.each(function(){var e='<div class="'+b.type+'" id="'+d+'" style="display:none"><div class="tl"></div><div class="tr"></div><div class="desc"><p>'+b.text+'</p></div><div class="bl"></div class="br"><div></div></div>';a(b.target).append(e);if(b.click){a("#"+d).addClass("click_close")}a("#"+d).slideDown(function(){setTimeout(function(){a("#"+d).slideUp(function(){a("#"+d).remove()})},b.time)});a(document).on("click",".click_close",function(){a(this).slideUp(function(){a(this).remove()})})})}})(jQuery);
 
 /*
 * jQuery custom checkbox plugin
