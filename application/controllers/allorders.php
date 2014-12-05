@@ -20,7 +20,7 @@ class AllOrders extends MY_Controller {
     {
         $data['data']['orders'] = $this->morder->getManagementOrders();
         $data['view'] = 'mAllorders';
-        $this->load->view('_container', $data);
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 
     /*
@@ -31,21 +31,25 @@ class AllOrders extends MY_Controller {
         $data['data']['order'] = (object)$this->morder->getOrder($id);
         $data['data']['order_products'] = $this->morder->getOrderProducts($id);
         $data['view'] = 'mAllordersDetail';
-        $this->load->view('_container', $data);
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 
     /*
     Set order state to completed. If customer want to pick up directly in bakery
     then management will check it.
     */
-    public function set()
+    public function set($id)
     {
-        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        $post_data['vybavene'] = 1;
+        if($this->morder->editOrder($id, $post_data))
         {
-            $post_data = $this->input->post();
-            echo json_encode($this->morder->updateOrder($post_data, $id, array('vybavene')));
+            $this->statman->setSuccessStatus("Objednávka označena za vyřízenou");
+            redirect('/allorders/get/'.$id, 'refresh');
         }
         else
-            echo json_encode(FALSE);
+        {
+            $this->statman->setErrorStatus("Objednávku nelze označit za vyřízenou");
+            redirect('/allorders/get/'.$id, 'refresh');
+        }
     }
 }

@@ -6,20 +6,24 @@ class Areas extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('marea');
+        $this->load->model('muser');
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
             redirect('/user/login', 'refresh');
     }
     public function index()
     {
-        $data['data']['areas'] = $this->marea->getAreasAddresses();
+        $data['data']['areas'] = $this->marea->getAreas();
+        $data['data']['drivers'] = $this->muser->getDrivers();
         $data['view'] = 'mAreas';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
-    public function asigndriver()
+    public function assigndriver()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
+            $id = $post_data['id'];
+            unset($post_data['id']);
             echo json_encode($this->marea->updateArea($post_data, $id));
         }
         else
@@ -47,7 +51,7 @@ class Areas extends MY_Controller {
             $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
-    public function delete($id)
+    public function delete()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {

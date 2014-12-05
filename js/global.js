@@ -21,6 +21,8 @@ function ajaxCall(e){
 	var data = "id="+id;
 	if (ajaxData == "mAddresses")
 		data = "id="+id+'&oblast='+$(this).val();
+	if (ajaxData == "mAreas")
+		data = "id="+id+'&spravuje='+$(this).val();
 	
 	e.preventDefault();
 	

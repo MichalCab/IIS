@@ -12,14 +12,14 @@
 					<th>Na sklade</th>
 					<th></th>
 				</tr>
-				<?php if(!empty($materials)): ?>
-				    <?php foreach ($materials as $item): ?>
+				<?php if(!empty($products)): ?>
+				    <?php foreach ($products as $item): ?>
         				<tr id="<?php echo $item->id; ?>">
         					<td><?php echo $item->nazov; ?></td>
         					<td><?php echo $item->nakupnaCena; ?></td>
         					<td><?php echo $item->naSklade; ?></td>
         					<td>
-        					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" ajax-action="delete" class="button ajax mRight"><small class="icon cross"></small><span>Zmazať</span></a>
+        					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" ajax-action="delete" class="button ajax mRight"><small class="icon cross"></small><span>Vypnúť</span></a>
         					</td>
         				</tr>
     				<?php endforeach; ?>
