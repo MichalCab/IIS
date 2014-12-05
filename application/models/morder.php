@@ -59,7 +59,7 @@ class MOrder extends MY_Model {
         {
             if ($key != "termin" && $key != "adresa" && $key != "podal")
             {
-                $counts += int($value);
+                $counts += intval($value);
             }
         }
         if ($counts == 0)
