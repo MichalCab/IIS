@@ -1,6 +1,3 @@
-<script>
-    $('#submenu').removeClass('mDestroy');
-</script>
 <div id="table" class="help">
 	<h1>Table:</h1>
 	<div class="col w10 last">
