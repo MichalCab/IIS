@@ -32,7 +32,7 @@ class Users extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if($this->muser->addUser($post_data), )
+            if($this->muser->addUser($post_data))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali uživatele");
                 redirect('/users', 'refresh');
