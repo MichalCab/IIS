@@ -42,6 +42,7 @@ class MOrder extends MY_Model {
 
         if (isset($data["termin"]))
         {
+            echo count(strtolower($data["termin"]));
             if (count(strtolower($data["termin"])) != 10)
             {
                 $data['error'] = "Musíte zadat termín ve správném formátu";
