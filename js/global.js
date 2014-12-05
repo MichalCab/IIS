@@ -56,7 +56,7 @@ $(document).ready(function() {
 	
 	$('.ajax').click(ajaxCall);
 	
-	$('.ajax').change(ajaxCall);
+	$('.ajax-change').change(ajaxCall);
 	
 	//This function is for the form submit
 	$(document).on("click", "a.form_submit", function(){
