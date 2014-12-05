@@ -89,6 +89,7 @@ class MY_Model extends CI_Model {
     public function addRow(&$data, $attributes=NULL, $unsetAttributes=NULL, $nonEmptyColumns=NULL)
     {
         $this->setUpOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
+        var_dump($data);
         $messages = $this->modelvalidator->valideInsert($data, $this->attributes, 
                                                         $this->unset_attributes,
                                                         $this->non_empty_columns);
