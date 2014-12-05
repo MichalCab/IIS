@@ -26,7 +26,7 @@ class Material extends MY_Controller {
     public function index()
     {
         $data['data']['materials'] = $this->mmaterial->getMaterials();
-        $data['view'] = 'cMaterial';
+        $data['view'] = 'mMaterial';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 
