@@ -42,7 +42,6 @@ class MOrder extends MY_Model {
 
         if (isset($data["termin"]))
         {
-            echo strlen(strtolower($data["termin"]));
             if (strlen(strtolower($data["termin"])) != 10)
             {
                 $data['error'] = "Musíte zadat termín ve správném formátu";
@@ -56,7 +55,7 @@ class MOrder extends MY_Model {
         }
         
         $counts = 0;
-        foreach ($data_copy as $key => $value)
+        foreach ($data as $key => $value)
         {
             if ($key != "termin" && $key != "adresa" && $key != "podal")
             {
