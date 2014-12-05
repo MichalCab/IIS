@@ -43,7 +43,7 @@ class AllOrders extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            echo json_encode($this->morder->updateOrder($post_data, $id, array('vybavene')));
+            echo json_encode($this->morder->editOrder($post_data, $id, array('vybavene'), NULL, array('vybavene')));
         }
         else
             echo json_encode(FALSE);
