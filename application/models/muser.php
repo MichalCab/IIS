@@ -13,6 +13,10 @@ class MUser extends MY_Model {
     {
         return $this->getRows(NULL, NULL, 0);
     }
+    public function getDrivers()
+    {
+        return $this->getRows('typ', 'VOD', 0);
+    }
     public function getUser($id)
     {
         return $this->getRow($id);

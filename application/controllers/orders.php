@@ -18,7 +18,7 @@ class Orders extends MY_Controller {
     */
     public function index()
     {
-        $data['data']['orders'] = $this->morder->getDriverOrders($this->userData->id)
+        $data['data']['orders'] = $this->morder->getDriverOrders($this->userData->id);
         $data['view'] = 'dOrders';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
@@ -37,23 +37,18 @@ class Orders extends MY_Controller {
     /*
     Set up order as completed
     */
-    public function set()
+    public function set($id)
     {
-        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        $post_data['vybavene'] = 1;
+        if($this->morder->editOrder($id, $post_data))
         {
-            $id = $this->input->post()['id'];
-            if($this->morder->editOrder($post_data, $id))
-            {
-                $this->statman->setSuccessStatus("Objednávka označena za vyřízenou");
-                redirect('/ordes/get/'+$id, 'refresh');
-            }
-            else
-            {
-                $this->statman->setErrorNow("Objednávku nelze označit za vyřízenou");
-                redirect('/ordes/get/'+$id, 'refresh');
-            }
+            $this->statman->setSuccessStatus("Objednávka označena za vyřízenou");
+            redirect('/orders/get/'.$id, 'refresh');
         }
         else
-            echo json_encode(FALSE);
+        {
+            $this->statman->setErrorStatus("Objednávku nelze označit za vyřízenou");
+            redirect('/orders/get/'.$id, 'refresh');
+        }
     }
-
+}

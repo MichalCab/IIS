@@ -14,7 +14,7 @@
         <div class="col w1"><div class="content"><h3>Vybaveno:</h3></div></div>
         <div class="col w1 last"><div class="content">
             <?php if($order->vybavene == 0): ?>
-                <a href="/<?php echo $this->router->class; ?>/set/<?php echo $item->id; ?>" class="button"><small class="icon check"></small><span>Označiť za vybavené</span></a>
+                <a href="/<?php echo $this->router->class; ?>/set/<?php echo $order->id; ?>" class="button"><small class="icon check"></small><span>Označiť za vybavené</span></a>
             <?php else: ?>
                 Áno
             <?php endif; ?>

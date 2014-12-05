@@ -26,12 +26,12 @@ class Statman
 	    
 	    if ($cookieSuccess)
 	    {
-	        $this->CI->cookieman->deleteCookie($this->cookieSuccessName, FALSE);
+	        $this->CI->cookieman->deleteCookie($this->cookieSuccessName);
 	        $result = array($this->variableName => array($this->successVariableName => $cookieSuccess));
 	    } 
 	    else if ($cookieError)
 	    {
-	        $this->CI->cookieman->deleteCookie($this->$cookieErrorName, FALSE);
+	        $this->CI->cookieman->deleteCookie($this->cookieErrorName);
 	        $result = array($this->variableName => array($this->errorVariableName => $cookieError));
 	    }
 	    
