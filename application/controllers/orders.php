@@ -10,7 +10,7 @@ class Orders extends MY_Controller {
         parent::__construct();
         $this->load->model('morder');
         if (! $this->auth->isDriver())
-            redirect('/user/', 'refresh')
+            redirect('/user/', 'refresh');
     }
 
     /*
@@ -18,9 +18,9 @@ class Orders extends MY_Controller {
     */
     public function index()
     {
-        $data['orders'] = $this->morder->getDriverOrders($this->userData->id)
+        $data['data']['orders'] = $this->morder->getDriverOrders($this->userData->id)
         $data['view'] = 'dOrders';
-        $this->load->view('_container', $data);
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 
     /*
