@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+Class for operation around management section with users (Clen systemu)
+*/
 class Users extends MY_Controller {
 
 	function __construct()
@@ -9,12 +12,20 @@ class Users extends MY_Controller {
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
             redirect('/user/login/', 'refresh');
     }
+
+    /*
+    Get all users of system (Clen systemu)
+    */
     public function index()
     {
         $data['users'] = $this->muser->getUsers();
         $data['view'] = 'mUsers';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
+
+    /*
+    Add new user to system (driver/managment person/customer)
+    */
     public function add()
     {
         $data = array('view' => 'mUsersAdd');
@@ -35,6 +46,10 @@ class Users extends MY_Controller {
         else
             $this->load->view('_container', $this->statman->setActualStatus($data));
     }
+
+    /*
+    Approve request for registration from visitor. 
+    */
     public function set()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
@@ -45,6 +60,10 @@ class Users extends MY_Controller {
         else
             echo json_encode(FALSE);
     }
+
+    /*
+    Delete user, for example driver, from system (again only hide)
+    */
     public function delete()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
