@@ -7,7 +7,7 @@ class ModelValidator
 		
 	}
 	
-	function valideInsert(&$inputs, $attributes, $unset_attributes=array(), $non_empty=array())
+	function valideInsert(&$inputs, $attributes, $unset_attributes, $non_empty)
 	{
         $i = 0;
         $isNotInside = $attributes;
@@ -51,8 +51,20 @@ class ModelValidator
         
 	    return $result;
 	}
-    function valideUpdate(&$inputs, $attributes, $unset_attributes=array(), $non_empty=array())
+    function valideUpdate(&$inputs, $attributes, $unset_attributes, $non_empty, $old_values)
     {
+        $inputs['changed'] = FALSE;
+        foreach ($inputs as $key => $value)
+        {
+            if (in_array($key, $attributes))
+            {
+                if ($value != $old_value[$key])
+                {
+                    $inputs['changed'] = TRUE;
+                    break;
+                }
+            }
+        }
         return $this->valideInsert($inputs, $attributes, $unset_attributes, $non_empty);
     }
 }
