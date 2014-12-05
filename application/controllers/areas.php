@@ -11,7 +11,7 @@ class Areas extends MY_Controller {
     }
     public function index()
     {
-        $data['data']['areas'] = $this->marea->getAreaAddresses();
+        $data['data']['areas'] = $this->marea->getAreasAddresses();
         $data['view'] = 'mAreas';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
