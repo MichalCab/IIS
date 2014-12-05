@@ -34,8 +34,8 @@ class MProduct extends MY_Model {
         return $this->deleteRow($id);
     }
 
-    public function getProductMaterial($id)
+    public function getProductMaterials($id)
     {
-        return $this->getRows($id, $id, 1);
+        return $this->getRows('id', $id, 1);
     }
 }

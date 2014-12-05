@@ -9,7 +9,6 @@ class Product extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('mproduct');
-        #$this->load->model('mproductmaterial');
         $this->load->model('mmaterial');
         if (! $this->auth->isAdmin())
             redirect('/user', 'refresh');
@@ -80,5 +79,15 @@ class Product extends MY_Controller {
             $data['data']['product'] = $this->mproduct->getProduct($id);
             $this->load->view('_container', $this->statman->setActualStatus($data));
         }
+    }
+    /*
+    Get detail of selected product (Pecivo)
+    */
+    public function get($id)
+    {
+        $data['data']['product'] = (object)$this->mproduct->getProduct($id);
+        $data['data']['product_material'] = $this->mproduct->getProductMaterials($id);
+        $data['view'] = 'mProductDetail';
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 }
