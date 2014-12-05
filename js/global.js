@@ -14,8 +14,13 @@ function ajaxCall(e){
 	var postUrl = $(this).attr('href');
 	var action = $(this).attr('ajax-action');
 	var noAnim = $(this).attr('ajax-noanimation');
+	var ajaxData = $(this).attr('ajax-data');
 	
 	msgs = ajaxMsg[action]; 
+	
+	var data = "id="+id;
+	if (ajaxData == "mAddresses")
+		data = "id="+id+'&oblast='+$(this).val();
 	
 	e.preventDefault();
 	
@@ -27,7 +32,7 @@ function ajaxCall(e){
 		noty({type: 'error', text: msgs.error, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
 	}
 	
-	$.post(postUrl, "id="+id+'&oblast='+$(this).val(), function(data,status){
+	$.post(postUrl, data, function(data,status){
 		var result = JSON.parse(data);
 		if (noAnim != undefined){
 			if (result === true)

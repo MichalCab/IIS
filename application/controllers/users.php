@@ -18,7 +18,7 @@ class Users extends MY_Controller {
     */
     public function index()
     {
-        $data['users'] = $this->muser->getUsers();
+        $data['data']['users'] = $this->muser->getUsers();
         $data['view'] = 'mUsers';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
@@ -54,7 +54,8 @@ class Users extends MY_Controller {
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
-            $post_data = $this->input->post();
+            $id = $this->input->post('id', FALSE);
+            $post_data['evidovany'] = 1;
             echo json_encode($this->muser->updateUser($post_data, $id, array('evidovany')));
         }
         else
