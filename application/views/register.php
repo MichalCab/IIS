@@ -50,7 +50,7 @@
 							</p>
 							<p>
 								<label for="heslo">Priezvisko:</label>
-								<input type="password" name="priezvisko" id="priezvisko" value="<?php echo isset($priezvisko) ? $priezvisko : '';?>" size="60" class="text" />
+								<input type="text" name="priezvisko" id="priezvisko" value="<?php echo isset($priezvisko) ? $priezvisko : '';?>" size="60" class="text" />
 								<br />
 							</p>
 							<p class="last">
