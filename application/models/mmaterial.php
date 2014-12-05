@@ -11,9 +11,9 @@ class MMaterial extends MY_Model {
         $this->non_empty = array('nazov', 'nakupniCena', 'naSklade');
     }
 
-    public function getMaterials($id)
+    public function getMaterials()
     {
-        return $this->getRows('id', $id, 0);
+        return $this->getRows(NULL, NULL, 0);
     }
     public function getMaterial($id)
     {
