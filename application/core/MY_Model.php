@@ -90,6 +90,9 @@ class MY_Model extends CI_Model {
     {
         $this->setUpOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
         var_dump($data);
+        var_dump($this->attributes);
+        var_dump($this->unset_attributes);
+        var_dump($this->non_empty_columns);
         $messages = $this->modelvalidator->valideInsert($data, $this->attributes, 
                                                         $this->unset_attributes,
                                                         $this->non_empty_columns);
