@@ -9,34 +9,54 @@ var ajaxMsg = {
 		},
 };
 
-$(document).ready(function() {
+function ajaxCall(e){
+	var id = $(this).attr('ajax-id');
+	var postUrl = $(this).attr('href');
+	var action = $(this).attr('ajax-action');
+	var noAnim = $(this).attr('ajax-noanimation');
 	
-	$(".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
+	msgs = ajaxMsg[action]; 
 	
-	$('.ajax').click(function(e){
-		var id = $(this).attr('ajax-id');
-		var postUrl = $(this).attr('href');
-		var action = $(this).attr('ajax-action');
-		
-		msgs = ajaxMsg[action]; 
-		
-		e.preventDefault();
-		
-		$.post(postUrl, "id="+id, function(data,status){
-			var result = JSON.parse(data);
+	e.preventDefault();
+	
+	function succMsgCall() {
+		noty({type: 'success', text: msgs.success, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
+	}
+	
+	function errMsgCall() {
+		noty({type: 'error', text: msgs.error, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
+	}
+	
+	$.post(postUrl, "id="+id+'&oblast='+$(this).val(), function(data,status){
+		var result = JSON.parse(data);
+		if (noAnim != undefined){
+			if (result === true)
+				succMsgCall();
+			else
+				errMsgCall();
+		} else {
 			if(result === true) {
 				$('#'+id).addClass('hideAnim');
 				setTimeout(function(){
 					$('#'+id).remove();
-					noty({type: 'success', text: msgs.success, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
+					succMsgCall();
 				}, 200);
 			} else {
-				noty({type: 'error', text: msgs.error, timeout: 3000, force: false, modal: false, maxVisible: 5, killer: false, closeWith: ['click'], layout: 'top'});
+				errMsgCall();
 			}
-		});
-		
-		return false;
-	});	
+		}
+	});
+	
+	return false;
+}
+
+$(document).ready(function() {
+	
+	$(".datepicker" ).datepicker({ minDate: 1, dateFormat: "yy-mm-dd" });
+	
+	$('.ajax').click(ajaxCall);
+	
+	$('.ajax').change(ajaxCall);
 	
 	//This function is for the form submit
 	$(document).on("click", "a.form_submit", function(){
