@@ -5,7 +5,7 @@ class MArea extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_name = array('vOblastRozvozu', 'vOblastRozvozuAdresa');
+        $this->table_names = array('vOblastRozvozu', 'vOblastRozvozuAdresa');
         $this->table_insert_names = array('OblastRozvozu');
     }
 

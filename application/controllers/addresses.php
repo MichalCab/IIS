@@ -7,7 +7,7 @@ class Addresses extends MY_Controller {
         parent::__construct();
         $this->load->model('maddress');
         $this->load->model('marea');
-        if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
+        if (! $this->auth->isAdmin())
             redirect('/user', 'refresh');
     }
     public function index()
