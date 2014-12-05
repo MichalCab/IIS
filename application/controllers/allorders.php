@@ -19,6 +19,7 @@ class AllOrders extends MY_Controller {
     public function index()
     {
         $data['data']['orders'] = $this->morder->getManagementOrders();
+        var_dump($data);
         $data['view'] = 'mAllorders';
         $this->load->view('_container', $data);
     }
@@ -30,7 +31,7 @@ class AllOrders extends MY_Controller {
     {
         $data['data']['order'] = (object)$this->morder->getOrder($id);
         $data['data']['order_products'] = $this->morder->getOrderProducts($id);
-        $data['view'] = 'mAllorderDetail';
+        $data['view'] = 'mAllordersDetail';
         $this->load->view('_container', $data);
     }
 
