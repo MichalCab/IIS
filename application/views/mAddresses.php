@@ -15,10 +15,10 @@
         				<tr id="<?php echo $item->id; ?>">
         					<td><?php echo $item->adresa; ?></td>
         					<td>
-        					     <select class="ajax-change" ajax-id="<?php echo $item->id; ?>" ajax-action="stateChange" href="/addresses/assignarea">
+        					     <select class="ajax" ajax-id="<?php echo $item->id; ?>" ajax-noanimation="true" ajax-action="stateChange" href="/addresses/assignarea">
                     			     <option value="null">Žiadna</option>
                     			     <?php foreach($areas as $area):?>
-                    			         <option value="<?php echo $area->id; ?>" <?php echo ($item->area == $area->id) ? 'selected="selected"': ''; ?>><?php echo $area->nazov; ?></option>
+                    			         <option value="<?php echo $area->id; ?>" <?php echo ($item->oblast == $area->id) ? 'selected="selected"': ''; ?>><?php echo $area->nazov; ?></option>
                     			     <?php endforeach;?>
                     		 	 </select>
         					</td>
