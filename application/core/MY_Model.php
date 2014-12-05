@@ -101,7 +101,6 @@ class MY_Model extends CI_Model {
             $data = array_merge($data, $messages);
             return false;
         }
-        var_dump($data);
         $this->db->insert($this->table_insert_names[0], $data); #IDEA catch db error and transform to user
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
