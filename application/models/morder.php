@@ -20,7 +20,7 @@ class MOrder extends MY_Model {
     }
     public function getManagementOrders()
     {
-        return $this->getRows(NULL, NULL, 2);
+        return $this->getRows(NULL, NULL, 3);
     }
     public function getOrder($id)
     {
