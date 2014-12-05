@@ -23,7 +23,7 @@ class Order extends MY_Controller {
     {
         $data['data']['orders'] = $this->morder->getCustomerOrders($this->userData->id);
         $data['view'] = 'cOrder';
-        $this->load->view('_container', $data);
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
 
     /*
