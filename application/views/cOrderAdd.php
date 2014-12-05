@@ -2,7 +2,7 @@
 	<form action="/<?php echo $this->router->class; ?>/add" method="post">
 		<p>
 			<label for="termin">Termin:</label>
-			<input type="text" name="termin" id="termin" value="<?php echo (isset($termin) ? $termin : ''); ?>" size="60" class="text datepicker" />
+			<input type="text" name="termin" id="termin" value="<?php echo (isset($order->termin) ? $order->termin : ''); ?>" size="60" class="text datepicker" />
 			<br />
 		</p>
 		<p>
@@ -10,7 +10,7 @@
 			<select name="adresa" id="adresa">
 			     <option value="null">Osobný odber</option>
 			     <?php foreach($addresses as $item):?>
-			         <option value="<?php echo $item->id; ?>" <?php echo (isset($adresa) && $adresa == $item->id) ? 'selected="selected"': ''; ?>><?php echo $item->adresa; ?></option>
+			         <option value="<?php echo $item->id; ?>" <?php echo (isset($order->adresa) && $order->adresa == $item->id) ? 'selected="selected"': ''; ?>><?php echo $item->adresa; ?></option>
 			     <?php endforeach;?>
 			</select>
 			<br />
@@ -31,7 +31,7 @@
                     				<tr>
                     				    <td><?php echo $item->nazov; ?></td>
                     				    <td><?php echo $item->popis; ?></td>
-                    					<td><input type="number" name="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>" value="<?php echo (isset($order_products[$item->id]) ? $products[$item->id] : '0'); ?>" size="60" class="text" min="0" /></td>
+                    					<td><input type="number" name="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>" value="<?php echo (isset($order->order_products[$item->id]) ? $products[$item->id] : '0'); ?>" size="60" class="text" min="0" /></td>
                     					<td><?php echo $item->cena; ?></td>
                     				</tr>
                 				<?php endforeach; ?>
