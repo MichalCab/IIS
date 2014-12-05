@@ -19,6 +19,7 @@ class AllOrders extends MY_Controller {
     public function index()
     {
         $data['data']['orders'] = $this->morder->getManagementOrders();
+        var_dump($data);
         $data['view'] = 'mAllorders';
         $this->load->view('_container', $data);
     }
