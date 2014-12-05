@@ -67,7 +67,7 @@ class MOrder extends MY_Model {
             $data['error'] = "Musíte vybrat nějaké zboží";
             return false;
         }
-        $non_empty_columns = array('podal', 'adresa','termin');
+        $non_empty_columns = array('podal', 'termin');
         $data_copy = $data;
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
         if ($orderError)
