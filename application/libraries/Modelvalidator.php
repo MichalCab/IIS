@@ -58,7 +58,7 @@ class ModelValidator
         {
             if (in_array($key, $attributes))
             {
-                if ($value != $old_values[$key])
+                if ($value != (array)$old_values[$key])
                 {
                     $inputs['changed'] = TRUE;
                     break;
