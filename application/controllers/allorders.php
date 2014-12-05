@@ -41,7 +41,7 @@ class AllOrders extends MY_Controller {
     public function set($id)
     {
         $post_data['vybavene'] = 1;
-        if($this->morder->editOrder($id, $post_data))
+        if($this->morder->editOrder($id, $post_data, array('vybavene'), NULL, array('vybavene')))
         {
             $this->statman->setSuccessStatus("Objednávka označena za vyřízenou");
             redirect('/allorders/get/'.$id, 'refresh');

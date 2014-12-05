@@ -39,7 +39,7 @@ class Material extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if($this->mmaterial->addMaterial($post_data, array('nazov'), array(), array()))
+            if($this->mmaterial->addMaterial($post_data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade')))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali surovinu");
                 redirect('/material', 'refresh');
@@ -61,7 +61,7 @@ class Material extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if ($this->mmaterial->editMaterial($id, $post_data))
+            if ($this->mmaterial->editMaterial($id, $post_data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade')))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste změnili stav suroviny");
                 redirect('/material', 'refresh');
