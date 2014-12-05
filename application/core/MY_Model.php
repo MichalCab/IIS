@@ -123,7 +123,7 @@ class MY_Model extends CI_Model {
         }
         $this->db->where('id', $id);
         $this->db->update($this->table_names[0], $data); #IDEA catch db error
-        if ($data['changed'] === FALSE)
+        if (isset($data['changed']) && $data['changed'] === FALSE)
             return TRUE;
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
