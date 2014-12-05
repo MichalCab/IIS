@@ -19,13 +19,13 @@ class MMaterial extends MY_Model {
     {
         return $this->getRow($id);
     }
-    public function addMaterial(&$data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade'))
+    public function addMaterial(&$data))
     {
-        return $this->addRow($data);
+        return $this->addRow($data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade'));
     }
-    public function editMaterial($id, &$data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade'))
+    public function editMaterial($id, &$data)
     {
-        return $this->editRow($id, $data);
+        return $this->editRow($id, $data, array('nazov', 'nakupnaCena', 'naSklade'), NULL, array('nazov', 'nakupnaCena', 'naSklade'));
     }
     public function deleteMaterial($id)
     {
