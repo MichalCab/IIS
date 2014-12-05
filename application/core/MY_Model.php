@@ -15,6 +15,9 @@ class MY_Model extends CI_Model {
         //contains names of tables from whitch we want insert/update (real tables)
         $this->table_insert_names = array();
 
+        //attributes whitch we want to insert into database (contains table columns)
+        $this->attributes = array();
+
         //attributes from http post whitch we want to unset (repeated password)
         $this->unset_attributes = array();
 
@@ -25,7 +28,7 @@ class MY_Model extends CI_Model {
     /*
     Set up optional params to instance variables
     */
-    public function checkOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns)
+    public function setUpOptionalParams($attributes=NULL, $unsetAttributes=NULL, $nonEmptyColumns=NULL)
     {
         if ($attributes !== NULL)
             $this->attributes = $attributes;
@@ -76,7 +79,7 @@ class MY_Model extends CI_Model {
     */
     public function addRow(&$data, $attributes=NULL, $unsetAttributes=NULL, $nonEmptyColumns=NULL)
     {
-        $this->checkOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
+        $this->setUpOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
         $messages = $this->modelvalidator->valideInsert($data, $this->attributes, 
                                                         $this->unset_attributes,
                                                         $this->non_empty_columns);
@@ -98,7 +101,7 @@ class MY_Model extends CI_Model {
     */
     public function editRow($id, &$data, $attributes=NULL, $unsetAttributes=NULL, $nonEmptyColumns=NULL)
     {
-        $this->checkOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
+        $this->setUpOptionalParams($attributes, $unsetAttributes, $nonEmptyColumns);
         $oldValues = $this->getRow($id);
         $messages = $this->modelvalidator->valideUpdate($data, $this->attributes,
                                                         $this->unset_attributes,

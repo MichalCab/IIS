@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+Class for operation around management section with order (Objednavky)
+*/
 class AllOrders extends MY_Controller {
 
 	function __construct()
@@ -9,16 +12,32 @@ class AllOrders extends MY_Controller {
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
             redirect('/user/login/', 'refresh');
     }
+
+    /*
+    Get all orders (Objednavky)
+    */
     public function index()
     {
-        $data['orders'] = $this->morder->getManagementOrders();
-        $this->load->view('orders', $data);
+        $data['data']['orders'] = $this->morder->getManagementOrders();
+        $data['view'] = 'mAllorder';
+        $this->load->view('_container', $data);
     }
+
+    /*
+    Get detail of selected order
+    */
     public function get($id)
     {
-        $data['order'] = $this->morder->getOrder($id);
-        $this->load->view('order', $data);
+        $data['data']['order'] = (object)$this->morder->getOrder($id);
+        $data['data']['order_products'] = $this->morder->getOrderProducts($id);
+        $data['view'] = 'mAllorderDetail';
+        $this->load->view('_container', $data);
     }
+
+    /*
+    Set order state to completed. If customer want to pick up directly in bakery
+    then management will check it.
+    */
     public function set()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')

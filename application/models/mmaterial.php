@@ -7,6 +7,8 @@ class MMaterial extends MY_Model {
         parent::__construct();
         $this->table_name = array('vSurovina');
         $this->table_insert_names = array('Surovina');
+        $this->attributes = array('nazov', 'nakupniCena', 'naSklade');
+        $this->non_empty = array('nazov', 'nakupniCena', 'naSklade');
     }
 
     public function getMaterials($id)
@@ -19,15 +21,11 @@ class MMaterial extends MY_Model {
     }
     public function addMaterial($data)
     {
-        
-        $attributes = array('nazov', 'nakupniCena', 'naSklade');
         return $this->addRow($data, $attributes);
     }
-    public function editMaterial($data, $id, $attributes, $non_empty)
+    public function editMaterial($data, $id)
     {
-        $attributes = array('nazov', 'nakupniCena', 'naSklade');
-        $non_empty = array('nazov', 'nakupniCena', 'naSklade');
-        return $this->editRow($data, $id, $attributes, $this->unset_attributes, $non_empty);
+        return $this->editRow($data, $id);
     }
     public function deleteMaterial($id)
     {

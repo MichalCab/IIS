@@ -1,23 +1,31 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+Class for operation around driver section with orders (Objednavky)
+*/
 class Orders extends MY_Controller {
 
 	function __construct()
     {
         parent::__construct();
         $this->load->model('morder');
-        #$this->userData = $this->auth->getUserData();
-        if (! $this->auth->isLogged())
-            redirect('/user/login/', 'refresh');
         if (! $this->auth->isDriver())
             redirect('/user/', 'refresh')
     }
+
+    /*
+    Get driver orders (Objednavky) for processing 
+    */
     public function index()
     {
         $data['orders'] = $this->morder->getDriverOrders($this->userData->id)
         $data['view'] = 'dOrders';
         $this->load->view('_container', $data);
     }
+
+    /*
+    Get detail of selected order
+    */    
     public function get($id)
     {
         $data['data']['order'] = (object)$this->morder->getOrder($id);
@@ -25,6 +33,10 @@ class Orders extends MY_Controller {
         $data['view'] = 'dOrdersDetail';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
+
+    /*
+    Set up order as completed
+    */
     public function set($id)
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
@@ -35,4 +47,4 @@ class Orders extends MY_Controller {
         else
             echo json_encode(FALSE);
     }
-}
+
