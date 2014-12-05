@@ -29,6 +29,7 @@ class ModelValidator
             else
             {
                 // odpalime nezadane
+                echo $key;
                 $result["warning"] = $result["warning"] . "Atribut '". $key . "' je nežádaný</br>";
                 unset($inputs[$key]);
             }
