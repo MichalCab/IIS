@@ -13,6 +13,14 @@ class ModelValidator
         $isNotInside = $attributes;
         $result["error"] = "";
         $result["warning"] = "";
+        echo "\nINPUT\n";
+        var_dump($inputs);
+        echo "\nATTRIBUTES\n";
+        var_dump($attributes);
+        echo "\nunset_attributes\n";
+        var_dump($unset_attributes);
+        echo "\nnon_empty\n";
+        var_dump($non_empty);
         foreach ($inputs as $key => $value)
         {
             if (in_array($key, $attributes))

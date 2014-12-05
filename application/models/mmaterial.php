@@ -21,7 +21,6 @@ class MMaterial extends MY_Model {
     }
     public function addMaterial(&$data)
     {
-        var_dump($data);
         return $this->addRow($data);
     }
     public function editMaterial($id, &$data)
