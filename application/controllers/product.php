@@ -9,7 +9,7 @@ class Product extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('mproduct');
-        $this->load->model('mproductmaterial');
+        #$this->load->model('mproductmaterial');
         $this->load->model('mmaterial');
         if (! $this->auth->isAdmin())
             redirect('/user', 'refresh');
