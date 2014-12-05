@@ -7,13 +7,13 @@ class Areas extends MY_Controller {
         parent::__construct();
         $this->load->model('marea');
         if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
-            redirect('/login/form/', 'refresh');
+            redirect('/user/login', 'refresh');
     }
     public function index()
     {
-        $data['areas'] = $this->marea->getAreas()
-        $data['drivers'] = $this->mdriver->getDrivers()
-        $this->load->view('areas', $data);
+        $data['data']['areas'] = $this->marea->getAreaAddresses();
+        $data['view'] = 'mAreas';
+        $this->load->view('_container', $this->statman->setActualStatus($data));
     }
     public function asigndriver()
     {
@@ -27,15 +27,24 @@ class Areas extends MY_Controller {
     }
     public function add()
     {
+        $data = array('view' => 'mAreasAdd');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            echo json_encode($this->marea->addArea($post_data));
+            if($this->marea->addArea($post_data))
+            {
+                $this->statman->setSuccessStatus("Úspěšně jste přidali oblast rozvozu");
+                redirect('/areas', 'refresh');
+            }
+            else
+            {
+                $data['data']['area'] = (object) $post_data;
+                $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
+            }
         }
         else
         {
-            $data['drivers'] = $this->mdriver->getDrivers()
-            $this->load->view('area_add', $data);
+            $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
     public function delete($id)

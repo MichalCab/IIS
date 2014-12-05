@@ -33,8 +33,10 @@ class Address extends MY_Controller {
                 $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
         }
-        else
+        else    
+        {
             $this->load->view('_container', $this->statman->setActualStatus($data));
+        }
     }
     public function edit($id)
     {
