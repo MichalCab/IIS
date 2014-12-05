@@ -22,7 +22,7 @@ class Address extends MY_Controller {
         {
             $post_data = $this->input->post();
             $post_data["clen"] = $this->userData->id;
-            if($this->maddress->addAddress($post_data))
+            if($this->maddress->addAddress($post_data), array('nazev'), NULL, array('nazev'))
             {
                 $this->statman->setSuccessStatus("Úspěšně jste přidali adresu");
                 redirect('/address', 'refresh');
@@ -44,8 +44,11 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if ($this->maddress->editAddress($id, $post_data) || $this->maddress->getAddress($id)->adresa == $post_data["adresa"]) #TODO
+            $copy_data = $this->maddress->getAddress($id);
+            $copy_data['adresa'] = $post_data['adresa'];
+            if ($this->maddress->addAddress($post_data, array('nazev','oblast', 'clen'), NULL, array('nazev', 'oblast', 'clen')))
             {
+                $this->maddress->deleteAddress($id);
                 $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
                 redirect('/address', 'refresh');
             }
