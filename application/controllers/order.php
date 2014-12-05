@@ -63,7 +63,6 @@ class Order extends MY_Controller {
     {
         $data['data']['order'] = (object)$this->morder->getOrder($id);
         $data['data']['order_products'] = $this->morder->getOrderProducts($id);
-        var_dump($data);
         $data['view'] = 'cOrderDetail';
         $this->load->view('_container', $data);
         #TODO
