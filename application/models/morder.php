@@ -40,15 +40,33 @@ class MOrder extends MY_Model {
                 $data["adresa"] = NULL;
         }
 
-        /*
         if (isset($data["termin"]))
         {
             if (count(strtolower($data["termin"])) != 10)
+            {
+                $data['error'] = "Musíte zadat termín ve správném formátu";
                 return false;
+            }
         }
         else
+        {
+            $data['error'] = "Musíte zadat termín doručení";
             return false;
-        */
+        }
+        
+        $counts = 0;
+        foreach ($data_copy as $key => $value)
+        {
+            if ($key != "termin" && $key != "adresa" && $key != "podal")
+            {
+                $counts += int($value);
+            }
+        }
+        if ($counts == 0)
+        {
+            $data['error'] = "Musíte vybrat nějaké zboží";
+            return false;
+        }
         $non_empty_columns = array('podal', 'adresa','termin');
         $data_copy = $data;
         $orderError = $this->addRow($data, $attributes, array(), $non_empty_columns);
