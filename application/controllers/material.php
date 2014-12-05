@@ -11,8 +11,8 @@ class Material extends MY_Controller {
         $this->load->model('mmaterial');
 
         $this->mmaterial->setUpOptionalParams(
-                $attributes=array('nazov', 'nakupniCena', 'naSklade'),  
-                $nonEmptyColumns=array('nazov', 'nakupniCena', 'naSklade')
+                $attributes=array('nazov', 'nakupnaCena', 'naSklade'),  
+                $nonEmptyColumns=array('nazov', 'nakupnaCena', 'naSklade')
         );
 
         // it can be used only by Admin
