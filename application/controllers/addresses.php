@@ -23,7 +23,7 @@ class Addresses extends MY_Controller {
         {
             $post_data = $this->input->post();
             $id = $post_data['id'];
-            unset($post_data['id'])
+            unset($post_data['id']);
             echo json_encode($this->maddress->editAddress($id, $post_data));
         }
         else
