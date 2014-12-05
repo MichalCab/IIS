@@ -48,13 +48,13 @@ class MY_Model extends CI_Model {
         #    $table_index = 0;
         $this->db->select('*');
         $this->db->from($this->table_names[$table_index]);
-        #echo $table_index;
-        #echo $this->table_names[$table_index];
+        echo $table_index;
+        echo $this->table_names[$table_index];
         if ($column != NULL)
             $this->db->where($column, $id);
         $query = $this->db->get();
-        #print_r($query);
-        #var_dump($this->db->queries);
+        print_r($query);
+        var_dump($this->db->queries);
         $result = $query->result();
         $query->free_result();
         return $result;
