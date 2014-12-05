@@ -71,6 +71,7 @@ class MY_Model extends CI_Model {
         $this->db->where('id', $id);
         $query = $this->db->get();
         print_r($query);
+        echo $this->db->queries[0];
         $result = $query->row();
         $query->free_result();
         var_dump($result);
