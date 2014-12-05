@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
-Class for operation around admin section with material (Suroviny)
+Class for operation around management section with material (Suroviny)
 */
 class Material extends MY_Controller {
 

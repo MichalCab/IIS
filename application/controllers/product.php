@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+Class for operation around management section with products (Pecivo)
+*/
 class Product extends MY_Controller {
 
 	function __construct()
@@ -8,15 +11,23 @@ class Product extends MY_Controller {
         $this->load->model('mproduct');
         $this->load->model('mproductmaterial');
         $this->load->model('mmaterial');
-        if (! $this->auth->isLogged() || ! $this->auth->isAdmin())
+        if (! $this->auth->isAdmin())
             redirect('/user', 'refresh');
     }
+
+    /*
+    Get all products (Pecivo)
+    */
     public function index()
     {
         $data['data']['products'] = $this->mproduct->getProducts();
         $data['view'] = 'mProduct';
         $this->load->view('_container', $this->statman->setActualStatus($data));
     }
+
+    /*
+    Add new kind of product (Pecivo) to system
+    */
     public function add()
     {
         $data = array('view' => 'cProductAdd');
@@ -42,6 +53,10 @@ class Product extends MY_Controller {
             $this->load->view('product_edit', $data);
         }
     }
+
+    /*
+    Edit info about existing product (Pecivo)
+    */
     public function edit($id)
     {
         $data = array('view' => 'mProductEdit');
@@ -65,15 +80,5 @@ class Product extends MY_Controller {
             $data['data']['product'] = $this->mproduct->getProduct($id);
             $this->load->view('_container', $this->statman->setActualStatus($data));
         }
-    }
-    public function set()
-    {
-        if ($this->input->server('REQUEST_METHOD') === 'POST')
-        {
-            $post_data = $this->input->post();
-            echo json_encode($this->mproduct->updateProduct($post_data, $id, array('vybavene')));
-        }
-        else
-            echo json_encode(FALSE);
     }
 }
