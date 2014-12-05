@@ -37,12 +37,21 @@ class Orders extends MY_Controller {
     /*
     Set up order as completed
     */
-    public function set($id)
+    public function set()
     {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
-            $post_data = $this->input->post();
-            echo json_encode($this->morder->editOrder($post_data, $id));
+            $id = $this->input->post()['id'];
+            if($this->morder->editOrder($post_data, $id))
+            {
+                $this->statman->setSuccessStatus("Objednávka označena za vyřízenou");
+                redirect('/ordes/get/'+$id, 'refresh');
+            }
+            else
+            {
+                $this->statman->setErrorNow("Objednávku nelze označit za vyřízenou");
+                redirect('/ordes/get/'+$id, 'refresh');
+            }
         }
         else
             echo json_encode(FALSE);
