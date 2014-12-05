@@ -5,7 +5,8 @@ class MOrder extends MY_Model {
     function __construct()
     {
         parent::__construct();
-        $this->table_names = array('vObjednavka', 'vObjednavkaPecivo', 'vObjednavkaAdresa');
+        $this->table_names = array('vObjednavka', 'vObjednavkaPecivo', 
+                                   'vObjednavkaAdresa', 'vObjednavkaAdresaClen');
         $this->table_insert_names = array('Objednavka', 'Zoznam');
     }
 
@@ -15,7 +16,7 @@ class MOrder extends MY_Model {
     }
     public function getDriverOrders($id)
     {
-        return $this->getRows('vodic', $id, 2);
+        return $this->getRows('vodic', $id, 3);
     }
     public function getManagementOrders()
     {
@@ -110,9 +111,11 @@ class MOrder extends MY_Model {
     public function editOrder($id, &$data)
     {
         if ($this->auth->isAdmin() || $this->auth->isDriver())
+        {
             $attributes = array('vybavene');
-        
-        return $this->editRow($data, $attributes);
+            $non_empty_columns = array('vybavene');
+        }
+        return $this->editRow($data, $attributes, array(), $non_empty_columns);
     }
 
     public function deleteOrder($id)

@@ -42,7 +42,7 @@ class Address extends MY_Controller {
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
-            if ($this->maddress->editAddress($id, $post_data) || $this->maddress->getAddress($id)->adresa == $post_data["adresa"]) // TODO tuto **** si sprav ako chces!!
+            if ($this->maddress->editAddress($id, $post_data) || $this->maddress->getAddress($id)->adresa == $post_data["adresa"]) #TODO
             {
                 $this->statman->setSuccessStatus("Úspěšně jste změnili adresu");
                 redirect('/address', 'refresh');
