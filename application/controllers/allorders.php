@@ -31,7 +31,7 @@ class AllOrders extends MY_Controller {
     {
         $data['data']['order'] = (object)$this->morder->getOrder($id);
         $data['data']['order_products'] = $this->morder->getOrderProducts($id);
-        $data['view'] = 'mAllorderDetail';
+        $data['view'] = 'mAllordersDetail';
         $this->load->view('_container', $data);
     }
 
