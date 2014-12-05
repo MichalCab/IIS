@@ -26,7 +26,7 @@
         					<td><?php echo $item->priezvisko; ?></td>
         					<td>
         					   <a href="/<?php echo $this->router->class; ?>/delete" ajax-id="<?php echo $item->id; ?>" ajax-action="delete" class="button ajax mRight"><small class="icon cross"></small><span>Zmazať</span></a>
-        					   <?php if($item->evidovany == 0): ?>
+        					   <?php if(!$item->evidovany): ?>
         					       <a href="/<?php echo $this->router->class; ?>/set" ajax-id="<?php echo $item->id; ?>" ajax-action="stateChange" ajax-noanimation="true" class="button ajax mRight"><small class="icon check"></small><span>Aktivovať</span></a>
         					   <?php endif;?>
         					</td>
