@@ -20,7 +20,7 @@
 		<div id="header">
 			<div class="col w5 bottomlast">
 				<a href="" class="logo">
-					<img src="/images/logo.gif" alt="Logo" />
+					<h1>IIS - Pekáreň 2014/2015 (xilavs01, xcabmi00)</h1>
 				</a>
 			</div>
 			<div class="col w5 last right bottomlast">
