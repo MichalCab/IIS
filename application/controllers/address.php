@@ -46,6 +46,7 @@ class Address extends MY_Controller {
             $post_data = $this->input->post();
             $copy_data = (array)$this->maddress->getAddress($id);
             $copy_data['adresa'] = $post_data['adresa'];
+            unset($copy_data['oblast']);
             if ($this->maddress->addAddress($copy_data, array('nazev','oblast', 'clen'), NULL, array('nazev', 'oblast', 'clen')))
             {
                 $this->maddress->deleteAddress($id);
