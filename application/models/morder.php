@@ -92,7 +92,8 @@ class MOrder extends MY_Model {
             if ($data["adresa"] != 'null')
             {
                 $driverId = $this->getDriverId($data["adresa"]);
-                $this->setOrderDriver($orderId, $driverId);
+                if ($driverId !== NULL)
+                    $this->setOrderDriver($orderId, $driverId);
             }
         }
         return $data;
@@ -111,6 +112,8 @@ class MOrder extends MY_Model {
         $this->db->where('AdresaId', $adresaId);
         $query = $this->db->get();
         $result = $query->row();
+        if ($result === NULL)
+            return NULL;
         $query->free_result();
         return $result->id;
     }
