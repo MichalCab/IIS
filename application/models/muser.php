@@ -27,11 +27,11 @@ class MUser extends MY_Model {
             $attributes = array('login', 'heslo', 'heslo_znovu', 'meno', 'priezvisko', 'typ');
         return $this->addRow($data, $attributes, array('heslo_znovu'));
     }
-    public function editUser($data, $id)
+    public function editUser($id, $data)
     {
         if ($this->auth->isAdmin())
             $attributes = array('evidovany');
-        return $this->editRow($data, $id, $attributes);
+        return $this->editRow($id, $data, $attributes);
     }
     public function deleteUser($id)
     {

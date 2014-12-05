@@ -157,7 +157,7 @@ class MOrder extends MY_Model {
             $attributes = array('vybavene');
             $non_empty_columns = array('vybavene');
         }
-        return $this->editRow($data, $attributes, array(), $non_empty_columns);
+        return $this->editRow($id, $data, $attributes, array(), $non_empty_columns);
     }
 
     public function deleteOrder($id)

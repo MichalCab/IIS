@@ -23,11 +23,11 @@ class MProduct extends MY_Model {
             $attributes = array('nazov', 'cena', 'popis');
         return $this->addRow($data, $attributes);
     }
-    public function editProduct($data, $id)
+    public function editProduct($id, $data)
     {
         if ($this->auth->isAdmin())
             $attributes = array('nazov', 'cena', 'popis');
-        return $this->editRow($data, $id, $attributes);
+        return $this->editRow($id, $data, $attributes);
     }
     public function deleteProduct($id)
     {
