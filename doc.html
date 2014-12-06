@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!-- saved from url=(0070)https://www.fit.vutbr.cz/study/courses/IIS/private/projekt/doc.html.cs -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <title>Projekt IIS</title>
     <style type="text/css">
@@ -11,45 +11,45 @@
 <style type="text/css"></style></head>
 <body>
 
-<h1>Pekáreň</h1>
+<h1>PekĂĄreĹ</h1>
 
 <dl>
 	<dt>Autori</dt>
-	<dd>Michal Cáb
+	<dd>Michal CĂĄb
 	    <a href="mailto:xcabmi00@stud.fit.vutbr.cz">xcabmi00@stud.fit.vutbr.cz</a> -
 		??????
 	</dd>
-	<dd>Filip Ilavský
+	<dd>Filip IlavskĂ˝
 	    <a href="mailto:xilavs01@stud.fit.vutbr.cz">xilavs01@stud.fit.vutbr.cz</a> - 
-		databázový návrh a realizácia, užívateľské rozhranie
+		databĂĄzovĂ˝ nĂĄvrh a realizĂĄcia, uĹžĂ­vateÄžskĂŠ rozhranie
 	</dd>
 	<dt>URL aplikace</dt>
 	<dd><a href="http://iis.slovtherm.sk">http://iis.slovtherm.sk</a></dd>
 </dl>
 
-<h2>Užívatelia systému pre testovanie</h2>
-<p>Uveďte prosím existujúcí zástupcu <strong>všetkých úloh užívateľov</strong>.</p>
+<h2>UĹžĂ­vatelia systĂŠmu pre testovanie</h2>
+<p>UveÄte prosĂ­m existujĂşcĂ­ zĂĄstupcu <strong>vĹĄetkĂ˝ch Ăşloh uĹžĂ­vateÄžov</strong>.</p>
 <table>
-<tbody><tr><th>Login</th><th>Heslo</th><th>Úloha</th></tr>
-<tr><td>admin</td><td>a</td><td>Administrátor</td></tr>
-<tr><td>driver</td><td>a</td><td>Vodič</td></tr>
-<tr><td>customer</td><td>a</td><td>Zákazník</td></tr>
+<tbody><tr><th>Login</th><th>Heslo</th><th>Ăloha</th></tr>
+<tr><td>admin</td><td>a</td><td>AdministrĂĄtor</td></tr>
+<tr><td>driver</td><td>a</td><td>VodiÄ</td></tr>
+<tr><td>customer</td><td>a</td><td>ZĂĄkaznĂ­k</td></tr>
 </tbody></table>
 
-<h2>Implementácia</h2>
-<p>Informačný systém využíva MVC framework CodeIgniter implementovaný v PHP, pripojený na MySQL databázu. Ako grafické rozhranie je použité open source existujúce riešenie. V databázi bolo vykonaných niekoľko zmien, nakoľko pôvodný návrh sa popri implementácii ukázal v niektorých momentoch v reálnom systéme absolútne nepoužiteľný, boli upravené integritné obmedzenia tak, aby lepšie vyhovovali zadaniu a podmienkam pôvodného zadania. Do databázy bola pridaná tabuľka Stav, ktorej jeden záznam je vždy spojený s jedným záznamom ktorejkoľvek tabuľky v databáze. Taktiež boli pridané primárne kľúče formátu GUID, čiastočne aj pre jednoduchú použiteľnosť tabuľky Stav. V databáze sa nikdy nič reálne nemaže, nastavuje sa iba stav záznamu(konkrétne hodnota deleted) na 1, a pomocou pohľadov sa rozlišujú zmazané položky od nezmazaných. Výhodou je neporušenie integrity a nemožnosť stráty dát zlým zaobchádzaním s informačným systémom.</p>
-<p>Keďže ide o MVC framework, jednotlivé use-case budú priradené ku a vysvetlené kontrolérom(resp. metódou kontroléru), ktoré su nazvané takmer identicky aj v súborovom systéme. Kontroléry sa nachádyajú v zložke root/application/controllers/. Pri popise use-case bude použitý formát /'názov kontroléru'/'metóda(ak nezadaná, tak index)' Práca s databázou je v modeloch, súboroch s obdobným názvom v zložke root/application/models/. Grafické rozhranie je implementované v zložke s pohladmi, root/application/views.</p>
-<p>Žiadosť o priradenie do systému je implementovaná v /user/add, metóda vytvorí ešte neschváleného užívateľa, ktorého schváli administrátor pomocou /users/set. Na prihlásenie je použitý /user/login, pracujúci s databázou a kontrolujúci stav prihlásenia pomocou PHP Session, pre zvýšenie bezpečnosti aj s regenerovaním Session ID pri každom úspešnom prihlásení. Pri odhlásení je zmazaný autorizačný údaj na strane serveru obsahujúci databázové ID prihláseného užívateľa. Po prihlásení, alebo pokuse o vstupe na neautorizovaný kontrolér frameworku je zobrazený úvodný kontrolér s menom a priezviskom prihláseného užívateľa. Zákazník môže manipulovať so svojími adresami v kontroléri /address, pridávať /address/add, upravovať /address/edit a mazať /address/delete. Zákazník môže taktiež prezerať svoje objednávky na /order a vytvoriť novú na /order/add. Po zmene alebo zmazaní adresy použitej v niektorej z objednávok ostáva v objednávke adresa z času jej vytvorenia. Vodič môže prezerať objednávky zákazníkov pridelené automaticky systémom jemu podľa adresy zákazníka a tejto adresy oblasti, ktorá vodičovy prináleží na /orders, a taktiež môže označiť objednávku za vybavenú na /orders/get volaním metódy /orders/set. Administrátor môže užívateľov prezerať na /users, mazať pomocou /users/delete, schvaľovať pomocou /users/set. Prezerá produkty na /products, /products/get, pridáva na /products/add, maže pomocou /products/delete a mení stav na /products/set. Obdobne platí aj pre materiály, s použitím kontroléru /material, kde je avšak tiež možné jednotlivé materiály meniť na /material/edit. Administrátor narozdiel od vodiča vidí úplne všetky objednávky v systéme a vie s nimi manipulovať ako vodič, ale v kontroléri /allorders. Môže priraďovať adresy ku oblastiam na /addresses, resp. /addresses/assignarea, taktiež oblasti ku vodičom na /areas, reps. /areas/assigndriver. Oblasti môže mazať administrátor pomocou /areas/delete.</p>
+<h2>ImplementĂĄcia</h2>
+<p>InformaÄnĂ˝ systĂŠm vyuĹžĂ­va MVC framework CodeIgniter implementovanĂ˝ v PHP, pripojenĂ˝ na MySQL databĂĄzu. Ako grafickĂŠ rozhranie je pouĹžitĂŠ open source existujĂşce rieĹĄenie. V databĂĄzi bolo vykonanĂ˝ch niekoÄžko zmien, nakoÄžko pĂ´vodnĂ˝ nĂĄvrh sa popri implementĂĄcii ukĂĄzal v niektorĂ˝ch momentoch v reĂĄlnom systĂŠme absolĂştne nepouĹžiteÄžnĂ˝, boli upravenĂŠ integritnĂŠ obmedzenia tak, aby lepĹĄie vyhovovali zadaniu a podmienkam pĂ´vodnĂŠho zadania. Do databĂĄzy bola pridanĂĄ tabuÄžka Stav, ktorej jeden zĂĄznam je vĹždy spojenĂ˝ s jednĂ˝m zĂĄznamom ktorejkoÄžvek tabuÄžky v databĂĄze. TaktieĹž boli pridanĂŠ primĂĄrne kÄžĂşÄe formĂĄtu GUID, ÄiastoÄne aj pre jednoduchĂş pouĹžiteÄžnosĹĽ tabuÄžky Stav. V databĂĄze sa nikdy niÄ reĂĄlne nemaĹže, nastavuje sa iba stav zĂĄznamu(konkrĂŠtne hodnota deleted) na 1, a pomocou pohÄžadov sa rozliĹĄujĂş zmazanĂŠ poloĹžky od nezmazanĂ˝ch. VĂ˝hodou je neporuĹĄenie integrity a nemoĹžnosĹĽ strĂĄty dĂĄt zlĂ˝m zaobchĂĄdzanĂ­m s informaÄnĂ˝m systĂŠmom.</p>
+<p>KeÄĹže ide o MVC framework, jednotlivĂŠ use-case budĂş priradenĂŠ ku a vysvetlenĂŠ kontrolĂŠrom(resp. metĂłdou kontrolĂŠru), ktorĂŠ su nazvanĂŠ takmer identicky aj v sĂşborovom systĂŠme. KontrolĂŠry sa nachĂĄdyajĂş v zloĹžke root/application/controllers/. Pri popise use-case bude pouĹžitĂ˝ formĂĄt /'nĂĄzov kontrolĂŠru'/'metĂłda(ak nezadanĂĄ, tak index)' PrĂĄca s databĂĄzou je v modeloch, sĂşboroch s obdobnĂ˝m nĂĄzvom v zloĹžke root/application/models/. GrafickĂŠ rozhranie je implementovanĂŠ v zloĹžke s pohladmi, root/application/views.</p>
+<p>Ĺ˝iadosĹĽ o priradenie do systĂŠmu je implementovanĂĄ v /user/add, metĂłda vytvorĂ­ eĹĄte neschvĂĄlenĂŠho uĹžĂ­vateÄža, ktorĂŠho schvĂĄli administrĂĄtor pomocou /users/set. Na prihlĂĄsenie je pouĹžitĂ˝ /user/login, pracujĂşci s databĂĄzou a kontrolujĂşci stav prihlĂĄsenia pomocou PHP Session, pre zvĂ˝ĹĄenie bezpeÄnosti aj s regenerovanĂ­m Session ID pri kaĹždom ĂşspeĹĄnom prihlĂĄsenĂ­. Pri odhlĂĄsenĂ­ je zmazanĂ˝ autorizaÄnĂ˝ Ăşdaj na strane serveru obsahujĂşci databĂĄzovĂŠ ID prihlĂĄsenĂŠho uĹžĂ­vateÄža. Po prihlĂĄsenĂ­, alebo pokuse o vstupe na neautorizovanĂ˝ kontrolĂŠr frameworku je zobrazenĂ˝ ĂşvodnĂ˝ kontrolĂŠr s menom a priezviskom prihlĂĄsenĂŠho uĹžĂ­vateÄža. ZĂĄkaznĂ­k mĂ´Ĺže manipulovaĹĽ so svojĂ­mi adresami v kontrolĂŠri /address, pridĂĄvaĹĽ /address/add, upravovaĹĽ /address/edit a mazaĹĽ /address/delete. ZĂĄkaznĂ­k mĂ´Ĺže taktieĹž prezeraĹĽ svoje objednĂĄvky na /order a vytvoriĹĽ novĂş na /order/add. Po zmene alebo zmazanĂ­ adresy pouĹžitej v niektorej z objednĂĄvok ostĂĄva v objednĂĄvke adresa z Äasu jej vytvorenia. VodiÄ mĂ´Ĺže prezeraĹĽ objednĂĄvky zĂĄkaznĂ­kov pridelenĂŠ automaticky systĂŠmom jemu podÄža adresy zĂĄkaznĂ­ka a tejto adresy oblasti, ktorĂĄ vodiÄovy prinĂĄleĹžĂ­ na /orders, a taktieĹž mĂ´Ĺže oznaÄiĹĽ objednĂĄvku za vybavenĂş na /orders/get volanĂ­m metĂłdy /orders/set. AdministrĂĄtor mĂ´Ĺže uĹžĂ­vateÄžov prezeraĹĽ na /users, mazaĹĽ pomocou /users/delete, schvaÄžovaĹĽ pomocou /users/set. PrezerĂĄ produkty na /products, /products/get, pridĂĄva na /products/add, maĹže pomocou /products/delete a menĂ­ stav na /products/set. Obdobne platĂ­ aj pre materiĂĄly, s pouĹžitĂ­m kontrolĂŠru /material, kde je avĹĄak tieĹž moĹžnĂŠ jednotlivĂŠ materiĂĄly meniĹĽ na /material/edit. AdministrĂĄtor narozdiel od vodiÄa vidĂ­ Ăşplne vĹĄetky objednĂĄvky v systĂŠme a vie s nimi manipulovaĹĽ ako vodiÄ, ale v kontrolĂŠri /allorders. MĂ´Ĺže priraÄovaĹĽ adresy ku oblastiam na /addresses, resp. /addresses/assignarea, taktieĹž oblasti ku vodiÄom na /areas, reps. /areas/assigndriver. Oblasti mĂ´Ĺže mazaĹĽ administrĂĄtor pomocou /areas/delete.</p>
 
-<h2>Inštalácia</h2>
+<h2>InĹĄtalĂĄcia</h2>
 <ul>
-<li>Inštalácia spočíva v nakopírovaní obsahu zložky root na cieľové umiestnenie a nastavenie pripojenia na databázu v súbore /application/config/database.php. Po pripojení na pripravenú databázu je nutné upraviť .htaccess a aplikácia je od tohoto momentu plne funkčná.</li>
-<li>Použitá verzia frameworku CodeIgniter vyžaduje minimálnu verziu PHP 5.1.6. MySQL databáza musí podporovať triggre.</li>
-<li>Na vytvorenie databázy a sú prvotné naplnenie testovacími dátami v priečinku dva súbory. IIS.sql a INSERT.sql. Na vytvorenie je nutné využitie MySQL serveru s podporou triggrov, bez ktorých aplikácia nebude takmer vôbec funkčná.</li>
+<li>InĹĄtalĂĄcia spoÄĂ­va v nakopĂ­rovanĂ­ obsahu zloĹžky root na cieÄžovĂŠ umiestnenie a nastavenie pripojenia na databĂĄzu v sĂşbore /application/config/database.php. Po pripojenĂ­ na pripravenĂş databĂĄzu je nutnĂŠ upraviĹĽ .htaccess a aplikĂĄcia je od tohoto momentu plne funkÄnĂĄ.</li>
+<li>PouĹžitĂĄ verzia frameworku CodeIgniter vyĹžaduje minimĂĄlnu verziu PHP 5.1.6. MySQL databĂĄza musĂ­ podporovaĹĽ triggre.</li>
+<li>Na vytvorenie databĂĄzy a sĂş prvotnĂŠ naplnenie testovacĂ­mi dĂĄtami v prieÄinku dva sĂşbory. IIS.sql a INSERT.sql. Na vytvorenie je nutnĂŠ vyuĹžitie MySQL serveru s podporou triggrov, bez ktorĂ˝ch aplikĂĄcia nebude takmer vĂ´bec funkÄnĂĄ.</li>
 </ul>
 
-<h2>Známe problémy</h2>
-<p>Z časových dôvodov nie je implementovaná funkcionalita plánovania produkcie výroby produktov podľa vyťaženia pekárne obejdnávkami.</p>
+<h2>ZnĂĄme problĂŠmy</h2>
+<p>Z ÄasovĂ˝ch dĂ´vodov nie je implementovanĂĄ funkcionalita plĂĄnovania produkcie vĂ˝roby produktov podÄža vyĹĽaĹženia pekĂĄrne obejdnĂĄvkami.</p>
 
 
 
