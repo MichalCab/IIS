@@ -46,10 +46,8 @@ class Product extends MY_Controller {
         }
         else
         {
-            $data['productmaterial'] = $this->mproductmaterial->getProductProduct($id);
-            $data['product'] = $this->mproduct->getProduct($id);
-            $data['material'] = $this->mmaterial->getProduct($id);
-            $this->load->view('product_edit', $data);
+            $data['data']['material'] = $this->mmaterial->getMaterials();
+            $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
 
