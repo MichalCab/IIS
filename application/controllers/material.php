@@ -9,12 +9,6 @@ class Material extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('mmaterial');
-
-        $this->mmaterial->setUpOptionalParams(
-                $attributes=array('nazov', 'nakupnaCena', 'naSklade'),  
-                $nonEmptyColumns=array('nazov', 'nakupnaCena', 'naSklade')
-        );
-
         // it can be used only by Admin
         if (! $this->auth->isAdmin())
             redirect('/user/login/', 'refresh');
