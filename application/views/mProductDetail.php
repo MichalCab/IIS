@@ -34,7 +34,7 @@
 				</tr>
 				<?php foreach ($product_material as $item): ?>
     				<tr>
-    				    <td><?php echo $item->nazov; ?></td>
+    				    <td><?php echo $item->SurovinaNazov; ?></td>
     					<td><?php echo $item->nakupnaCena; ?></td>
     					<td><?php echo $item->naSklade; ?></td>
     				</tr>
