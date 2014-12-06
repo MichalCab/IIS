@@ -47,6 +47,7 @@ class Product extends MY_Controller {
         else
         {
             $data['data']['material'] = $this->mmaterial->getMaterials();
+            var_dump($data);
             $this->load->view('_container', $this->statman->setActualStatus($data));
         }
     }
