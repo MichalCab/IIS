@@ -29,7 +29,7 @@ class Product extends MY_Controller {
     */
     public function add()
     {
-        $data = array('view' => 'cProductAdd');
+        $data = array('view' => 'mProductAdd');
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
             $post_data = $this->input->post();
