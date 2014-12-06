@@ -56,6 +56,7 @@ class Users extends MY_Controller {
         {
             $id = $this->input->post('id', FALSE);
             $post_data['evidovany'] = 1;
+            $this->statman->setSuccessStatus("Úspěšně jste potvrdili uživatele");
             echo json_encode($this->muser->editUser($id, $post_data, array('evidovany'), NULL, array('evidovany')));
         }
         else
