@@ -41,6 +41,7 @@ class Product extends MY_Controller {
             else
             {
                 $data['data']['material'] = (object) $post_data;
+                $data['data']['materials'] = $this->mmaterial->getMaterials();
                 $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
         }
@@ -67,6 +68,7 @@ class Product extends MY_Controller {
             }
             else
             {
+                $data['data']['product_materials'] = $this->mproduct->getProductMaterials($id);
                 $data['data']['product'] = (object) $post_data;
                 $this->load->view('_container', $this->statman->setErrorNow($post_data['error'], $data));
             }
