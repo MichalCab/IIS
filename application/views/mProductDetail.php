@@ -11,7 +11,7 @@
         <div class="col w1"><div class="content"><h3>Cena:</h3></div></div>
         <div class="col w1 last"><div class="content"><?php echo $product->cena; ?></div></div>
         <div class="clear"></div>
-        <div class="col w1"><div class="content"><h3>Povolené:</h3></div></div>
+        <!-- <div class="col w1"><div class="content"><h3>Povolené:</h3></div></div>
         <div class="col w1 last"><div class="content">
             <?php if($product->povolene == 0): ?>
                 <a href="/<?php echo $this->router->class; ?>/set/<?php echo $product->id; ?>/1" class="button"><small class="icon check"></small><span>Povoliť</span></a>
@@ -19,7 +19,7 @@
                 <a href="/<?php echo $this->router->class; ?>/set/<?php echo $product->id; ?>/0" class="button"><small class="icon cross"></small><span>Zakázať</span></a>
             <?php endif; ?>
             </div></div>
-        <div class="clear"></div>
+        <div class="clear"></div>-->
     </div>
     <div class="bottom"><div></div></div>
 </div>

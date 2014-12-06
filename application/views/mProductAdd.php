@@ -6,7 +6,7 @@
 			<br />
 		</p>
 		<p>
-			<label for="popis">Popis:</label>
+			<label for="popis" class="nepovinne">Popis:</label>
 			<input type="text" name="popis" id="popis" value="<?php echo (isset($product->popis) ? $product->popis : ''); ?>" size="60" class="text" />
 			<br />
 		</p>
@@ -27,7 +27,7 @@
             					<th>Na sklade</th>
             				</tr>
             				<?php
-            				    $myproduct = (isset($product)) ? (array) $product : null;
+            				    $myproduct = (isset($material)) ? (array) $material : null;
             				    if(!empty($materials)): ?>
             				    <?php foreach ($materials as $item): ?>
                     				<tr>
